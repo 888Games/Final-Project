@@ -9,7 +9,7 @@ package model;
  * Class for gamblerCards
  */
 
-public class GamblerCard {
+public class Card {
 
     /**
      * Constructor for creating a gamblerCard
@@ -17,7 +17,7 @@ public class GamblerCard {
      * Id is automatically created
      */
 
-    public GamblerCard(double initialBalance){
+    public Card(double initialBalance){
 
     }
 
@@ -38,6 +38,8 @@ public class GamblerCard {
     public String generateBetId() {
         return "";
     }
+
+
 
 
 }

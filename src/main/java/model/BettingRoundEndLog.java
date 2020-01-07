@@ -12,7 +12,7 @@ public class BettingRoundEndLog {
 
     /**
      * Method which given a betting round return its result
-     * @param bettingRound
+     * @param bettingRound the betting round to get the result from
      * @return  result double value of the Betting round
      */
     public double getResult(BettingRound bettingRound) {

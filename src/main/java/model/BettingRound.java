@@ -9,7 +9,7 @@ public class BettingRound {
 
     /**
      * The method stores the passed value (an incoming bet) in a list.
-     * @param inValue
+     * @param inValue Int bet value
      */
     public void placeBet(int inValue) {}
 
@@ -17,7 +17,8 @@ public class BettingRound {
     /**
      * This method makes the cashier pay out the won amount
      * to the gambler's card.
-     * @param bet
+     * @param cashier the used cashier
+     * @param bet the ended bet
      */
     public void getOutValue(Cashier cashier, Bet bet) {}
 
