@@ -13,7 +13,7 @@ public class GameRound {
 
     /**
      * Method for evaluating the winner of a specific game round
-     * @return String id of the gamblerCard id of the winner
+     * @return String id of the card id of the winner
      */
 
     public String evaluateWinner() {

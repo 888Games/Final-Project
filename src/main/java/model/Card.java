@@ -6,18 +6,18 @@ package model;
  */
 
 /**
- * Class for gamblerCards
+ * Class for cards
  */
 
 public class Card {
 
     /**
-     * Constructor for creating a gamblerCard
-     * @param initialBalance Double value of the initial balance
+     * Constructor for creating a card
+     * @param credit Double value of the initial balance
      * Id is automatically created
      */
 
-    public Card(double initialBalance){
+    public Card(double credit){
 
     }
 

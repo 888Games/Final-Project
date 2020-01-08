@@ -34,7 +34,7 @@ public class CashierTest {
     }
 
     @Test
-    public void cashOutInvalidGamblerCardIdShouldThrowIllegalArgumentsException() {
+    public void cashOutInvalidCardIdShouldThrowIllegalArgumentsException() {
         // arrange
 
         // act

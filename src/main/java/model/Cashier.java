@@ -1,61 +1,49 @@
 package model;
 
 /**
- * @author Simon Martin Florian*
+ * @author 888 Games
  */
 
 /**
- * Class to manage gambler cards
+ * Class to manage cards
  */
-
 public class Cashier {
 
     /**
-     * This is a method for getting the current credit of a GamblerCard.
-     * @param cardId String value of the gambleCard id
-     * @return currentCredit Double value of the current credit for the card id
+     * Gets the credit of the card.
+     * @param card Card card to perform the operation
+     * @return credit double card's credit
      */
-
-    public double getCardCredit(String cardId){
-        return 0.0;
-    }
-
-
-    /**
-     * This is a method for giving a gambler card back and getting the credit from the card
-     * @param cardId String value of the gambleCard id
-     * @return credit Double value of the balance for the card id
-     */
-
-    public double cashOutCard(String cardId) {
+    public double getCardCredit(Card card){
         return 0.0;
     }
 
     /**
-     * This is a method for creating a new a gambler card
-     * @param initialBalance Double value of the initial balance
-     * @return String value of the id of the created gambler card
+     * Withdraw credit from the card.
+     * Sets the credit of the card to 0.
+     * @param card Card Card to perform the operation.
+     * @return credit double Cash to withdraw.
      */
-
-    public String createCard(double initialBalance){
-        return "";
+    public double cashOutCard(Card card) {
+        return 0.0;
     }
-
 
     /**
-     * This is a method for updating the current credit of a gambler card
-     * @param cardId String value of the gambleCard id
-     * @param credit Double value of the credit which is added or substracted from the current credit
+     * Creates a new card.
+     * @param credit Double Initial credit of the card.
+     * @return Card The created card.
      */
-
-    public void updateCardCredit(String cardId, double credit){
-
+    public Card createCard(double credit){
+        return new Card(0);
     }
 
-
-
-
-
-
-
+    /**
+     * Adds credit to the card.
+     * @param card Card Card to perform the operation.
+     * @param credit double Added credit from the current credit of the card.
+     *               May be negative, but not bigger than the current credit of the card.
+     */
+    public void updateCardCredit(Card card, double credit){
+        return;
+    }
 }

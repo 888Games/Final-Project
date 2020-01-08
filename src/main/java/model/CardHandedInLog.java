@@ -9,15 +9,15 @@ package model;
  */
 
 
-public class GamblingCardHandedInLog {
+public class CardHandedInLog {
 
 
     /**
-     * Override method which displays when a gamblerCard has been handed by the cashier to a gambler
+     * Override method which displays when a card has been handed by the cashier to a gambler
      * @return info
      */
      @Override
     public String toString() {
-        return "GamblerCard has been given to the gambler" ;
+        return "Card has been given to the gambler" ;
     }
 }
