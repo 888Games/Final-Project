@@ -1,31 +1,30 @@
 package model;
 
+import java.time.ZonedDateTime;
+import java.util.List;
+
 /**
  *  Class for managing a round of betting. It stores the incoming bets and
  *  sends them to the authority and manages the payout at the end of the
  *  round. It also logs the starting and ending moment of the round.
  */
 public class BettingRound {
+    private String bettingRoundId;
+    private ZonedDateTime createdAt;
+    private ZonedDateTime endedAt;
+    private List<Bet> bets;
+    private Logger bettingRoundLog;
+    private AuthorityGateway authorityGateway;
 
     /**
-     * The method stores the passed value (an incoming bet) in a list.
-     * @param inValue Int bet value
+     *
+     * @param bet Bet to place
      */
-    public void placeBet(int inValue) {}
-
-
-    /**
-     * This method makes the cashier pay out the won amount
-     * to the gambler's card.
-     * @param cashier the used cashier
-     * @param bet the ended bet
-     */
-    public void getOutValue(Cashier cashier, Bet bet) {}
+    public void placeBet(Bet bet) {}
 
     /**
-     * Sends the bettingRoundId (the token) with the list of bets
-     * when the round ends.
+     *
      */
-    public void notifyAuthorityAtEnd() {}
+    public void resolveBets() {}
 }
 
