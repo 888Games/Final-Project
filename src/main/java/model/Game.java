@@ -12,21 +12,16 @@ import java.util.List;
  */
 
 public class Game {
+    private String gameId;
+    private String gameName;
+    private List<BettingRound> bettingRounds;
+    private Logger gameLog;
 
     /**
      * Constructor for creating a new game
-     * @param gameRules List of rules for the game also used to evaluate the winner
      * @param name String value of the name of the game
      */
+    public Game(String name){}
 
-    public Game(List<GameRules> gameRules, String name){
-
-    }
-
-    /**
-     * Method for creating a new game round in the game
-     */
-    public void newGameRound() {
-
-    }
+    public BettingRound getCurrentBettingRound(){ return new BettingRound(); }
 }
