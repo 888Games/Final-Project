@@ -1,10 +1,9 @@
 package model;
 
-
 import java.util.List;
 
 /**
- * Machine is a class to manage the bets of gamblers.
+ * Represents a machine
  */
 public class Machine {
 
@@ -14,35 +13,34 @@ public class Machine {
     private Game game;
 
     /**
-     * Checks with the cashier if there is enough credit on the
-     * card to place a bet. If so, it lets the BettingRound add
-     * the bet to the list.
-     * @param inValue the amount I want to bet
+     * Creates a new machine.
+     */
+    public Machine(){}
+
+    /**
+     * Creates a bet with the inValue into the current betting round.
+     * Throws exception if there is no current betting round or the credit
+     * of the card is lower than inValue.
+     * @param card Card the operation be performed on
+     * @param inValue the amount of money bet
      */
     public void placeBet(Card card, int inValue) {}
 
     /**
-     * On BettingRound's finish, notifies the gambler about the
-     * value won.
-     * @param bet the bet for the outvalue
-     */
-    public void getOutValue(Bet bet) {}
-
-    /**
-     *
-     * @param
+     * Connects the card to the machine.
+     * @param card to be connected
      */
     public void connectCard(Card card){}
 
     /**
-     *
-     * @param
+     * Disconnects the card from the machine
+     * @param card to be disconnected
      */
     public void disconnectCard(Card card){}
 
     /**
-     *
-     * @param
+     * Updates the card credit with the outValue of the bet.
+     * @param bet Bet that contains outValue
      */
     public void givePrize(Bet bet){}
 }

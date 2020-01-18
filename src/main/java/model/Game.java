@@ -1,27 +1,26 @@
 package model;
 
-/**
- *
- * @author Simon Martin Florian
- */
-
 import java.util.List;
 
 /**
- * Class for creating a game and starting rounds
+ * Represents a game
  */
-
 public class Game {
     private String gameId;
     private String gameName;
     private List<BettingRound> bettingRounds;
     private Logger gameLog;
+    private AuthorityGateway authorityGateway;
 
     /**
-     * Constructor for creating a new game
-     * @param name String value of the name of the game
+     * Creates a new game and a list for the betting rounds.
+     * @param name The name of the game
      */
     public Game(String name){}
 
+    /**
+     * Returns the current betting round of the game.
+     * @return the current betting round or null if there is no active betting round
+     */
     public BettingRound getCurrentBettingRound(){ return new BettingRound(); }
 }

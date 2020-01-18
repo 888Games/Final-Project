@@ -1,12 +1,11 @@
 package model;
 
+import javax.crypto.Mac;
 import java.time.ZonedDateTime;
 import java.util.List;
 
 /**
- * A bet is taken by the Gambler and processed by the BettingRound class.
- * It stores a timeStamp of its creation, the value of the bet and the value
- * at the end of the betting round, which is transferred to the gambler's card.
+ * Represents a bet
  */
 public class Bet {
     private String betId;
@@ -19,6 +18,20 @@ public class Bet {
     private AuthorityGateway authorityGateway;
 
 
-    public void resolve(){}
+    /**
+     * Creates a new bet. Throws exception if the card
+     * is not connected to the machine.
+     * @param inValue The amount of money bet
+     * @param machine The machine on which the bet is placed
+     * @param card Card used to place a bet
+     */
+    public Bet(Double inValue, Machine machine, Card card) {
+    }
+
+    /**
+     * Sets the outValue and updates the card credit
+     * @param outValue the amount of money won
+     */
+    public void resolve(Double outValue){}
 
 }

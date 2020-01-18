@@ -1,31 +1,27 @@
 package model;
 
-/**
- *
- * @author Simon Martin Florian
- */
-
 import java.util.List;
 
-/**
- * Class for cards
- */
 
+/**
+ * Represents a card
+ */
 public class Card {
 
     private String cardId;
     private List<String> betIds;
 
     /**
-     * Constructor for creating a card
-     * Id is automatically created
+     * Creates a card with an automatically generated ID
+     * and an empty list of bet IDs
+     * Should only be called by the cashier
      */
     public Card(){
 
     }
 
     /**
-     * Method to store a betId on the card
+     * Stores a betId on the card
      * @param betId String value of the bet Id
      */
     public void addBetId(String betId) {
@@ -33,7 +29,7 @@ public class Card {
     }
 
     /**
-     * Method to generate a new betId
+     * Generates a new betId
      * @return  betId String value of the generated bet Id
      */
     public String generateBetId() {

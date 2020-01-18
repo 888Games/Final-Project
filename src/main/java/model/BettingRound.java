@@ -4,9 +4,7 @@ import java.time.ZonedDateTime;
 import java.util.List;
 
 /**
- *  Class for managing a round of betting. It stores the incoming bets and
- *  sends them to the authority and manages the payout at the end of the
- *  round. It also logs the starting and ending moment of the round.
+ *  Represents a round of betting
  */
 public class BettingRound {
     private String bettingRoundId;
@@ -17,13 +15,19 @@ public class BettingRound {
     private AuthorityGateway authorityGateway;
 
     /**
-     *
-     * @param bet Bet to place
+     * Creates a new betting round
+     */
+    public BettingRound() {}
+
+    /**
+     * Saves the bet in a betting round
+     * @param bet Bet to be placed
      */
     public void placeBet(Bet bet) {}
 
     /**
-     *
+     * Defines the winning bet and the amount of money won
+     * Should only be called once in the end of the betting round
      */
     public void resolveBets() {}
 }

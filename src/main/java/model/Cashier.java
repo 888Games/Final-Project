@@ -1,13 +1,9 @@
 package model;
 
-/**
- * @author 888 Games
- */
-
 import java.util.Map;
 
 /**
- * Class to manage cards
+ * Represents the cashier
  */
 public class Cashier {
 
@@ -15,9 +11,19 @@ public class Cashier {
     private Map<Card,CardCredit> cardCredits;
     private Logger cashierLog;
     private AuthorityGateway authorityGateway;
+    private static Cashier instance = null;
+
+    private Cashier() {
+    }
+
+    public static Cashier getInstance() {
+        if(instance == null)
+            instance = new Cashier();
+        return instance;
+    }
 
     /**
-     * Creates a new card.
+     * Creates a new card and returns it.
      * @param credit Double Initial credit of the card.
      * @return Card The created card.
      */
@@ -26,31 +32,22 @@ public class Cashier {
     }
 
     /**
-     * Gets the credit of the card.
-     * @param card Card card to perform the operation
-     * @return credit Double card's credit
+     * Returns the current credit of the card.
+     * @param card Card card to get the credit from
+     * @return credit Double current card's credit
      */
     public Double getCardCredit(Card card){
         return 0.0;
     }
 
     /**
-     * Adds credit to the card.
+     * Adds credit to the card. Throws exception if the credit
+     * is negative and the card doesnt have enough credit.
      * @param card Card Card to perform the operation.
-     * @param credit Double Added credit from the current credit of the card.
-     *               May be negative, but not bigger than the current credit of the card.
+     * @param credit Double Added credit from the current credit of the card. May be negative.
      */
     public void updateCardCredit(Card card, Double credit){
-        return;
-    }
 
-    /**
-     * Chaeks if the card's credit is greater or equal than credit
-     * @param card Card Card to perform the operation.
-     * @param credit Double
-     */
-    public Boolean checkCardCredit(Card card, Double credit){
-        return false;
     }
 
     /**

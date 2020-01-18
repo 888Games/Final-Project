@@ -1,9 +1,16 @@
 package model;
 
+/**
+ * Represents the current and the initial card credit
+ */
 public class CardCredit {
     private Double credit;
     private Double initialCredit;
 
+    /**
+     * Sets the initial credit and the credit
+     * @param initialCredit first amount of money
+     */
     public CardCredit(Double initialCredit) {
         this.initialCredit = initialCredit;
     }
