@@ -38,4 +38,13 @@ public class CardTest {
         card.addBetId(null);
     }
 
+    @Test (expected = NullPointerException.class)
+    public void addBetId_WithEmptyValue_ShouldThrowIllegalArgumentsException(){
+        //arrange
+        Card card = new Card();
+
+        //act
+        card.addBetId("");
+    }
+
 }
