@@ -26,6 +26,12 @@ public class Bet {
      * @param card Card used to place a bet
      */
     public Bet(Double inValue, Machine machine, Card card) {
+        this.inValue = inValue;
+        this.machine = machine;
+        this.card = card;
+        if (inValue == null || machine == null || card == null){
+            throw new IllegalArgumentException("Values should not be null");
+        }
     }
 
     /**
