@@ -29,4 +29,13 @@ public class CardTest {
         Assert.assertEquals(expect,card.getBetIds());
     }
 
+    @Test(expected = NullPointerException.class)
+    public void addBetId_WithNullValue_ShouldThrowIllegalArgumentsException(){
+        //arrange
+        Card card = new Card();
+
+        //act
+        card.addBetId(null);
+    }
+
 }
