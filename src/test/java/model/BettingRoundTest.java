@@ -5,8 +5,14 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
+/**
+ * Tests for BettingRound model.
+ */
 public class BettingRoundTest {
 
+    /**
+     * validating the bettingRound constructor. No parameters.
+     */
     @Test
     public void createBettingRound_Always_ShouldPass(){
         //arrange
@@ -16,6 +22,9 @@ public class BettingRoundTest {
         assertTrue(bettingRound != null);
     }
 
+    /**
+     * Validating that a bet can be placed on a bettingRound if it has not been resolved yet.
+     */
     @Test
     public void placeBet_WithNotResolvedBet_ShouldPass(){
         //arrange
@@ -28,6 +37,9 @@ public class BettingRoundTest {
 
     }
 
+    /**
+     * Validating that placing a bet which has already been resolved on a bettingRound is not allowed.
+     */
     @Test(expected = IllegalArgumentException.class)
     public void placeBet_WithResolvedBet_ShouldThrowIllegalArgumentsException(){
         //arrange
@@ -39,6 +51,9 @@ public class BettingRoundTest {
         bettingRound.placeBet(bet);
     }
 
+    /**
+     * Validating that the authority is called when resolving bets of a BettingRound.
+     */
     @Test
     public void resolveBets_CallingAuthority_ShouldPass(){
         //arrange
@@ -58,6 +73,9 @@ public class BettingRoundTest {
         verify(authorityGateway).randomInt("");
     }
 
+    /**
+     * Validating that when resolving bets form a betting round, results of those bets are updated in consequence.
+     */
     @Test
     public void resolveBets_ResolvingSingleBet_ShouldPass(){
         //arrange
