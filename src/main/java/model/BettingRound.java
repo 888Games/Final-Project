@@ -47,6 +47,16 @@ public class BettingRound {
      */
     public void resolveBets() {
         int randomNumber = this.authorityGateway.randomInt("");
+        Double finalOutValue = 0.0;
+        for (Bet bet : bets){
+            finalOutValue = bet.getInValue() + finalOutValue;
+            System.out.println(bet.getInValue());
+            if(bets.indexOf(bet) != randomNumber-1){
+                bet.resolve(0.0);
+            }
+        }
+        bets.get(randomNumber-1).resolve(finalOutValue);
+
     }
 }
 

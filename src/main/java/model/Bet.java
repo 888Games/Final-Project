@@ -65,6 +65,10 @@ public class Bet {
         return outValue;
     }
 
+    public Double getInValue() {
+        return inValue;
+    }
+
     public Card getCard() {
         return card;
     }

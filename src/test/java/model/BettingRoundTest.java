@@ -65,21 +65,19 @@ public class BettingRoundTest {
         when(authorityGateway.randomInt("")).thenReturn(2);
 
         //act
-        bet1.setInValue(5.5);
-        bet2.setInValue(2.0);
-        bet3.setInValue(2.5);
         bettingRound.setAuthorityGateway(authorityGateway);
+        when(bet1.getInValue()).thenReturn(5.5);
+        when(bet2.getInValue()).thenReturn(2.0);
+        when(bet3.getInValue()).thenReturn(2.5);
         bettingRound.placeBet(bet1);
         bettingRound.placeBet(bet2);
         bettingRound.placeBet(bet3);
-
         bettingRound.resolveBets();
 
         //assert
         verify(bet1).resolve(0.0);
         verify(bet2).resolve(10.0);
         verify(bet3).resolve(0.0);
-
 
     }
 
