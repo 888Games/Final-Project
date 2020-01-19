@@ -91,8 +91,6 @@ public class MachineTest {
         machine.disconnectCard(card);
         // assert
         assertTrue("Card should be removed from the connected Cards list", !machine.getConnectedCards().contains(card));
-
-
     }
 
     /**
@@ -146,12 +144,17 @@ public class MachineTest {
     public void givePrize_ShouldPass() {
         // arrange
         Machine machine = new Machine();
+        Cashier cashier = mock(Cashier.class);
+        machine.setCashier(cashier);
         Bet bet = mock(Bet.class);
         Card card = mock(Card.class);
         when(bet.isResolved()).thenReturn(true);
         when(bet.getCard()).thenReturn(card);
+        when(bet.getOutValue()).thenReturn(20.0);
         // act
         machine.givePrize(bet);
+        //assert
+        verify(cashier).updateCardCredit(card,20.0);
     }
 
     /**
@@ -172,12 +175,16 @@ public class MachineTest {
     public void givePrize_WithUnresolvedBet_ShouldThrowIllegalArgumentsException() {
         // arrange
         Machine machine = new Machine();
+        Cashier cashier = mock(Cashier.class);
+        machine.setCashier(cashier);
         Bet bet = mock(Bet.class);
         Card card = mock(Card.class);
         when(bet.isResolved()).thenReturn(false);
         when(bet.getCard()).thenReturn(card);
         // act
         machine.givePrize(bet);
+        // assert
+        verifyZeroInteractions(cashier);
     }
 
     /**
@@ -187,10 +194,14 @@ public class MachineTest {
     public void placeBet_WithNegativeInValue_ShouldThrowIllegalArgumentsException() {
         // arrange
         Machine machine = new Machine();
+        Cashier cashier = mock(Cashier.class);
+        machine.setCashier(cashier);
         Card card = mock(Card.class);
         machine.connectCard(card);
         // act
         machine.placeBet(card, -1.0);
+        // assert
+        verifyZeroInteractions(cashier);
     }
 
     /**
@@ -201,9 +212,14 @@ public class MachineTest {
         // arrange
         Machine machine = new Machine();
         Card card = mock(Card.class);
+        Cashier cashier = mock(Cashier.class);
+        when(cashier.getCardCredit(card)).thenReturn(10.0);
+        machine.setCashier(cashier);
         machine.connectCard(card);
         // act
         machine.placeBet(card, 1.0);
+        // assert
+        verify(cashier).updateCardCredit(card,-1.0);
     }
 
     /**
@@ -213,10 +229,14 @@ public class MachineTest {
     public void placeBet_WithZeroInValue_ShouldPass() {
         // arrange
         Machine machine = new Machine();
+        Cashier cashier = mock(Cashier.class);
+        machine.setCashier(cashier);
         Card card = mock(Card.class);
         machine.connectCard(card);
         // act
         machine.placeBet(card, 0.0);
+        // assert
+        verify(cashier).updateCardCredit(card, 0.0);
     }
 
     /**
@@ -226,10 +246,14 @@ public class MachineTest {
     public void placeBet_WithNullInValue_ShouldThrowIllegalArgumentsException() {
         // arrange
         Machine machine = new Machine();
+        Cashier cashier = mock(Cashier.class);
+        machine.setCashier(cashier);
         Card card = mock(Card.class);
         machine.connectCard(card);
         // act
         machine.placeBet(card, null);
+        // assert
+        verifyZeroInteractions(cashier);
     }
 
     /**
@@ -240,7 +264,9 @@ public class MachineTest {
         // arrange
         Machine machine = new Machine();
         Cashier cashier = mock(Cashier.class);
+        machine.setCashier(cashier);
         Card card = mock(Card.class);
+        when(cashier.getCardCredit(card)).thenReturn(10.0);
         machine.setCashier(cashier);
         machine.connectCard(card);
         // act
@@ -256,9 +282,13 @@ public class MachineTest {
     public void placeBet_WithNotConnectedCard_ShouldThrowIllegalArgumentsException() {
         // arrange
         Machine machine = new Machine();
+        Cashier cashier = mock(Cashier.class);
+        machine.setCashier(cashier);
         Card card = mock(Card.class);
         // act
         machine.placeBet(card, 1.0);
+        // assert
+        verifyZeroInteractions(cashier);
     }
 
     /**
@@ -270,12 +300,16 @@ public class MachineTest {
         Machine machine = new Machine();
         Card card = mock(Card.class);
         Game game = mock(Game.class);
+        Cashier cashier = mock(Cashier.class);
+        when(cashier.getCardCredit(card)).thenReturn(10.0);
+        machine.setCashier(cashier);
         machine.setGame(game);
         machine.connectCard(card);
         // act
         machine.placeBet(card, 1.0);
         machine.placeBet(card, 0.0);
         machine.placeBet(card, 0.0);
+        verifyNoMoreInteractions(cashier);
         when(game.getCurrentBettingRound()).thenReturn(null);
         machine.placeBet(card, 1.0);
     }
@@ -289,6 +323,8 @@ public class MachineTest {
         Machine machine = new Machine();
         Card card = mock(Card.class);
         Game game = mock(Game.class);
+        BettingRound bettingRound = mock(BettingRound.class);
+        when(game.getCurrentBettingRound()).thenReturn(bettingRound);
         Cashier cashier = mock(Cashier.class);
         when(cashier.getCardCredit(card)).thenReturn(10.0);
         machine.setCashier(cashier);
@@ -296,5 +332,8 @@ public class MachineTest {
         machine.connectCard(card);
         // act
         machine.placeBet(card, 20.0);
+        //
+        verify(cashier).getCardCredit(card);
+        verifyNoMoreInteractions(cashier);
     }
 }

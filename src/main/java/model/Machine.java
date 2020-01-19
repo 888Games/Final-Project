@@ -36,8 +36,13 @@ public class Machine {
         if(card != null && connectedCards.contains(card) && inValue != null &&inValue >= 0){
 
             if(game.getCurrentBettingRound() != null){
-                cashier.updateCardCredit(card,(0 - inValue));
-                game.getCurrentBettingRound().placeBet(new Bet(inValue, this, card));
+                if(cashier.getCardCredit(card) >= inValue){
+                    cashier.updateCardCredit(card,(0 - inValue));
+                    game.getCurrentBettingRound().placeBet(new Bet(inValue, this, card));
+                }else {
+                    throw new InsufficientCreditException();
+                }
+
             } else {
                 throw new InvalidBettingRoundException();
             }
