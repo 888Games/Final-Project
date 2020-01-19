@@ -17,6 +17,18 @@ public class BettingRoundTest {
         assertTrue(bettingRound != null);
     }
 
+    @Test
+    public void placeBet_WithNotResolvedBet_ShouldPass(){
+        //arrange
+        BettingRound bettingRound = new BettingRound();
+        Bet bet = mock(Bet.class);
+        when(bet.isResolved()).thenReturn(Boolean.FALSE);
+
+        //act
+        bettingRound.placeBet(bet);
+
+    }
+
     @Test(expected = IllegalArgumentException.class)
     public void placeBet_WithResolvedBet_ShouldThrowIllegalArgumentsException(){
         //arrange
