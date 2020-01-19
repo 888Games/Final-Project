@@ -137,7 +137,7 @@ public class MachineTest {
         Card card = mock(Card.class);
         machine.connectCard(card);
         // act
-        machine.placeBet(card, -1);
+        machine.placeBet(card, -1.0);
     }
 
     @Test
@@ -147,7 +147,7 @@ public class MachineTest {
         Card card = mock(Card.class);
         machine.connectCard(card);
         // act
-        machine.placeBet(card, 1);
+        machine.placeBet(card, 1.0);
     }
 
     @Test
@@ -157,8 +157,10 @@ public class MachineTest {
         Card card = mock(Card.class);
         machine.connectCard(card);
         // act
-        machine.placeBet(card, 0);
+        machine.placeBet(card, 0.0);
     }
+
+
 
     @Test (expected = IllegalArgumentException.class)
     public void placeBet_WithNotConnectedCard_ShouldThrowIllegalArgumentsException() {
@@ -166,8 +168,8 @@ public class MachineTest {
         Machine machine = new Machine();
         Card card = mock(Card.class);
         // act
-        machine.placeBet(card, 1);
+        machine.placeBet(card, 1.0);
     }
 
-    
+
 }

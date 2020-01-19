@@ -31,7 +31,16 @@ public class Machine {
      * @param card Card the operation be performed on
      * @param inValue the amount of money bet
      */
-    public void placeBet(Card card, int inValue) {}
+    public void placeBet(Card card, Double inValue) {
+
+        if(card != null && connectedCards.contains(card) && inValue != null &&inValue >= 0 && game.getCurrentBettingRound() != null){
+            cashier.updateCardCredit(card,(0 - inValue));
+            game.getCurrentBettingRound().placeBet(new Bet(inValue, this, card));
+
+        }else {
+            throw new IllegalArgumentException();
+        }
+    }
 
     /**
      * Connects the card to the machine.
