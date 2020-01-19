@@ -33,6 +33,9 @@ public class Card {
         if (betId == null){
             throw new IllegalArgumentException("betId should not be null");
         }
+        if (betId == ""){
+            throw new IllegalArgumentException("betId should not be empty");
+        }
     betIds.add(betId);
     }
 

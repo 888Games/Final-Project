@@ -38,7 +38,7 @@ public class CardTest {
         card.addBetId(null);
     }
 
-    @Test (expected = NullPointerException.class)
+    @Test (expected = IllegalArgumentException.class)
     public void addBetId_WithEmptyValue_ShouldThrowIllegalArgumentsException(){
         //arrange
         Card card = new Card();
