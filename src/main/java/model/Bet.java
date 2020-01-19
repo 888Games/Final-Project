@@ -51,4 +51,16 @@ public class Bet {
         return true;
     }
 
+
+    public boolean isResolved() {
+        return true;
+    }
+
+    public Double getOutValue() {
+        return outValue;
+    }
+
+    public Card getCard() {
+        return card;
+    }
 }
