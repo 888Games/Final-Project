@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.com/888Games/Final-Project.svg?branch=master)](https://travis-ci.com/888Games/Final-Project)
-[![Code Coverage](https://codecov.io/github/TCI-2019-g66/Final-Project/coverage.svg)](https://codecov.io/gh/TCI-2019-g66/Final-Project)
+[![Code Coverage](https://codecov.io/github/888Games/Final-Project/coverage.svg)](https://codecov.io/gh/888Games/Final-Project)
 
 # Final-Project
 
