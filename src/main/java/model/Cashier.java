@@ -1,5 +1,6 @@
 package model;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -8,7 +9,7 @@ import java.util.Map;
 public class Cashier {
 
     private String cashierId;
-    private Map<Card,CardCredit> cardCredits;
+    private Map<Card,CardCredit> cardCredits = new HashMap<>();
     private Logger cashierLog;
     private AuthorityGateway authorityGateway;
     private static Cashier instance = null;
@@ -27,7 +28,12 @@ public class Cashier {
      * @return Card The created card.
      */
     public Card createCard(Double credit){
-        return new Card();
+        if(credit == null) throw new IllegalArgumentException();
+        if(credit < 0) throw new IllegalArgumentException();
+
+        Card card = new Card();
+        cardCredits.put(card, new CardCredit(credit));
+        return card;
     }
 
     /**
