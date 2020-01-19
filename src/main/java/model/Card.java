@@ -1,6 +1,8 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 
 /**
@@ -17,7 +19,11 @@ public class Card {
      * Should only be called by the cashier
      */
     public Card(){
+    this.betIds = new ArrayList<>();
+    }
 
+    public List<String> getBetIds() {
+        return betIds;
     }
 
     /**
@@ -25,7 +31,13 @@ public class Card {
      * @param betId String value of the bet Id
      */
     public void addBetId(String betId) {
-
+        if (betId == null){
+            throw new IllegalArgumentException("betId should not be null");
+        }
+        if (betId == ""){
+            throw new IllegalArgumentException("betId should not be empty");
+        }
+    betIds.add(betId);
     }
 
     /**
@@ -33,7 +45,8 @@ public class Card {
      * @return  betId String value of the generated bet Id
      */
     public String generateBetId() {
-        return "";
+        String betId = UUID.randomUUID().toString();
+        return betId;
     }
 
 }

@@ -1,0 +1,145 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: Card</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">model</a> ]
+</div>
+
+<h1>Coverage Summary for Class: Card (model)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Card</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/ 4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    72.2%
+  </span>
+  <span class="absValue">
+    (13/ 18)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">Card$$EnhancerByMockitoWithCGLIB$$646db905</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/ 4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    72.2%
+  </span>
+  <span class="absValue">
+    (13/ 18)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package model;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import java.util.ArrayList;
+<i>4</i>&nbsp;import java.util.List;
+<i>5</i>&nbsp;import java.util.UUID;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;/**
+<i>9</i>&nbsp; * Represents a card
+<i>10</i>&nbsp; */
+<i>11</i>&nbsp;public class Card {
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;    private String cardId;
+<i>14</i>&nbsp;    private List&lt;String&gt; betIds;
+<i>15</i>&nbsp;
+<i>16</i>&nbsp;    /**
+<i>17</i>&nbsp;     * Creates a card with an automatically generated ID
+<i>18</i>&nbsp;     * and an empty list of bet IDs
+<i>19</i>&nbsp;     * Should only be called by the cashier
+<b class="fc"><i>20</i>&nbsp;     */</b>
+<b class="fc"><i>21</i>&nbsp;    public Card(){</b>
+<b class="fc"><i>22</i>&nbsp;    this.betIds = new ArrayList&lt;&gt;();</b>
+<b class="fc"><i>23</i>&nbsp;    }</b>
+<i>24</i>&nbsp;
+<b class="fc"><i>25</i>&nbsp;    public List&lt;String&gt; getBetIds() {</b>
+<b class="nc"><i>26</i>&nbsp;        return betIds;</b>
+<i>27</i>&nbsp;    }
+<i>28</i>&nbsp;
+<i>29</i>&nbsp;    /**
+<i>30</i>&nbsp;     * Stores a betId on the card
+<i>31</i>&nbsp;     * @param betId String value of the bet Id
+<i>32</i>&nbsp;     */
+<b class="fc"><i>33</i>&nbsp;    public void addBetId(String betId) {</b>
+<b class="fc"><i>34</i>&nbsp;        if (betId == null){</b>
+<b class="nc"><i>35</i>&nbsp;            throw new IllegalArgumentException(&quot;betId should not be null&quot;);</b>
+<b class="fc"><i>36</i>&nbsp;        }</b>
+<b class="fc"><i>37</i>&nbsp;        if (betId == &quot;&quot;){</b>
+<b class="nc"><i>38</i>&nbsp;            throw new IllegalArgumentException(&quot;betId should not be empty&quot;);</b>
+<b class="fc"><i>39</i>&nbsp;        }</b>
+<b class="fc"><i>40</i>&nbsp;    betIds.add(betId);</b>
+<b class="nc"><i>41</i>&nbsp;    }</b>
+<i>42</i>&nbsp;
+<i>43</i>&nbsp;    /**
+<i>44</i>&nbsp;     * Generates a new betId
+<i>45</i>&nbsp;     * @return  betId String value of the generated bet Id
+<i>46</i>&nbsp;     */
+<b class="nc"><i>47</i>&nbsp;    public String generateBetId() {</b>
+<b class="fc"><i>48</i>&nbsp;        String betId = UUID.randomUUID().toString();</b>
+<b class="fc"><i>49</i>&nbsp;        return betId;</b>
+<i>50</i>&nbsp;    }
+<i>51</i>&nbsp;
+<i>52</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-01-19 23:04</div>
+</div>
+</body>
+</html>
