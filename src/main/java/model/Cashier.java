@@ -13,8 +13,7 @@ public class Cashier {
     private AuthorityGateway authorityGateway;
     private static Cashier instance = null;
 
-    private Cashier() {
-    }
+    private Cashier() {}
 
     public static Cashier getInstance() {
         if(instance == null)
