@@ -1,16 +1,18 @@
 package model;
 
 import org.junit.Test;
+import org.mockito.Mock;
 
 import static org.junit.Assert.*;
 
 public class BettingRoundTest {
 
     @Test
-    public void placeBet() {
-    }
+    public void createBettingRound_Always_ShouldPass(){
+        //arrange
+        BettingRound bettingRound = new BettingRound();
 
-    @Test
-    public void resolveBets() {
+        //assert
+        assertTrue(bettingRound != null);
     }
 }
