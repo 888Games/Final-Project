@@ -129,4 +129,45 @@ public class MachineTest {
         // act
         machine.givePrize(bet);
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void placeBet_WithNegativeInValue_ShouldThrowIllegalArgumentsException() {
+        // arrange
+        Machine machine = new Machine();
+        Card card = mock(Card.class);
+        machine.connectCard(card);
+        // act
+        machine.placeBet(card, -1);
+    }
+
+    @Test
+    public void placeBet_WithPositiveInValue_ShoudlPass() {
+        // arrange
+        Machine machine = new Machine();
+        Card card = mock(Card.class);
+        machine.connectCard(card);
+        // act
+        machine.placeBet(card, 1);
+    }
+
+    @Test
+    public void placeBet_WithZeroInValue_ShouldPass() {
+        // arrange
+        Machine machine = new Machine();
+        Card card = mock(Card.class);
+        machine.connectCard(card);
+        // act
+        machine.placeBet(card, 0);
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void placeBet_WithNotConnectedCard_ShouldThrowIllegalArgumentsException() {
+        // arrange
+        Machine machine = new Machine();
+        Card card = mock(Card.class);
+        // act
+        machine.placeBet(card, 1);
+    }
+
+    
 }
