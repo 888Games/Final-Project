@@ -24,7 +24,9 @@ public class BettingRound {
      * @param bet Bet to be placed
      */
     public void placeBet(Bet bet) {
-
+        if(bet.isResolved()){
+            throw new IllegalArgumentException("Cannot place bet which has already been resolved");
+        }
     }
 
     /**
