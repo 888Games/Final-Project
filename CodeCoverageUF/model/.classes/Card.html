@@ -47,15 +47,15 @@
 </td>
 <td class="coverageStat">
   <span class="percent">
-    88.9%
+    90.9%
   </span>
   <span class="absValue">
-    (8/ 9)
+    (10/ 11)
   </span>
 </td>
 </tr>
   <tr>
-    <td class="name">Card$$EnhancerByMockitoWithCGLIB$$93773534</td>
+    <td class="name">Card$$EnhancerByMockitoWithCGLIB$$646db905</td>
   </tr>
 <tr>
   <td class="name"><strong>total</strong></td>
@@ -69,10 +69,10 @@
 </td>
 <td class="coverageStat">
   <span class="percent">
-    88.9%
+    90.9%
   </span>
   <span class="absValue">
-    (8/ 9)
+    (10/ 11)
   </span>
 </td>
 </tr>
@@ -117,24 +117,27 @@
 <b class="fc"><i>33</i>&nbsp;        if (betId == null){</b>
 <b class="fc"><i>34</i>&nbsp;            throw new IllegalArgumentException(&quot;betId should not be null&quot;);</b>
 <i>35</i>&nbsp;        }
-<b class="fc"><i>36</i>&nbsp;    betIds.add(betId);</b>
-<b class="fc"><i>37</i>&nbsp;    }</b>
-<i>38</i>&nbsp;
-<i>39</i>&nbsp;    /**
-<i>40</i>&nbsp;     * Generates a new betId
-<i>41</i>&nbsp;     * @return  betId String value of the generated bet Id
-<i>42</i>&nbsp;     */
-<i>43</i>&nbsp;    public String generateBetId() {
-<b class="nc"><i>44</i>&nbsp;        return &quot;&quot;;</b>
-<i>45</i>&nbsp;    }
-<i>46</i>&nbsp;
-<i>47</i>&nbsp;}
+<b class="fc"><i>36</i>&nbsp;        if (betId == &quot;&quot;){</b>
+<b class="fc"><i>37</i>&nbsp;            throw new IllegalArgumentException(&quot;betId should not be empty&quot;);</b>
+<i>38</i>&nbsp;        }
+<b class="fc"><i>39</i>&nbsp;    betIds.add(betId);</b>
+<b class="fc"><i>40</i>&nbsp;    }</b>
+<i>41</i>&nbsp;
+<i>42</i>&nbsp;    /**
+<i>43</i>&nbsp;     * Generates a new betId
+<i>44</i>&nbsp;     * @return  betId String value of the generated bet Id
+<i>45</i>&nbsp;     */
+<i>46</i>&nbsp;    public String generateBetId() {
+<b class="nc"><i>47</i>&nbsp;        return &quot;&quot;;</b>
+<i>48</i>&nbsp;    }
+<i>49</i>&nbsp;
+<i>50</i>&nbsp;}
 </div>
 </div>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2020-01-19 22:43</div>
+    <div style="float:right;">generated on 2020-01-19 22:54</div>
 </div>
 </body>
 </html>
