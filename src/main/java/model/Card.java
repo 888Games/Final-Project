@@ -20,6 +20,10 @@ public class Card {
 
     }
 
+    public List<String> getBetIds() {
+        return betIds;
+    }
+
     /**
      * Stores a betId on the card
      * @param betId String value of the bet Id
