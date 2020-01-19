@@ -42,4 +42,8 @@ public class Bet {
     public Double getOutValue() {
         return outValue;
     }
+
+    public Card getCard() {
+        return card;
+    }
 }

@@ -62,5 +62,11 @@ public class Machine {
      * Updates the card credit with the outValue of the bet.
      * @param bet Bet that contains outValue
      */
-    public void givePrize(Bet bet){}
+    public void givePrize(Bet bet){
+        if(bet != null && bet.isResolved()){
+            cashier.updateCardCredit(bet.getCard(), bet.getOutValue());
+        }else {
+            throw new IllegalArgumentException();
+        }
+    }
 }

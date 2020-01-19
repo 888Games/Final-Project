@@ -103,7 +103,9 @@ public class MachineTest {
         // arrange
         Machine machine = new Machine();
         Bet bet = mock(Bet.class);
+        Card card = mock(Card.class);
         when(bet.isResolved()).thenReturn(true);
+        when(bet.getCard()).thenReturn(card);
         // act
         machine.givePrize(bet);
     }
@@ -121,7 +123,9 @@ public class MachineTest {
         // arrange
         Machine machine = new Machine();
         Bet bet = mock(Bet.class);
+        Card card = mock(Card.class);
         when(bet.isResolved()).thenReturn(false);
+        when(bet.getCard()).thenReturn(card);
         // act
         machine.givePrize(bet);
     }
