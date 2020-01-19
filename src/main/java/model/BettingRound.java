@@ -23,7 +23,9 @@ public class BettingRound {
      * Saves the bet in a betting round
      * @param bet Bet to be placed
      */
-    public void placeBet(Bet bet) {}
+    public void placeBet(Bet bet) {
+
+    }
 
     /**
      * Defines the winning bet and the amount of money won
