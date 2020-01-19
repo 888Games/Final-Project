@@ -46,4 +46,9 @@ public class Bet {
         this.outValue = outValue;
     }
 
+
+    public boolean isResolved() {
+        return true;
+    }
+
 }
