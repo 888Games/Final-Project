@@ -45,11 +45,13 @@ public class BettingRoundTest {
         BettingRound bettingRound = new BettingRound();
         AuthorityGateway authorityGateway = mock(AuthorityGateway.class);
 
+
         //act
+        bettingRound.setAuthorityGateway(authorityGateway);
         bettingRound.resolveBets();
 
         //assert
-        verify(authorityGateway).randomInt("test");
+        verify(authorityGateway).randomInt("");
 
 
     }

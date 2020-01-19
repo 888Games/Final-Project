@@ -20,6 +20,12 @@ public class BettingRound {
      */
     public BettingRound() {
         this.bets = new ArrayList<>();
+        this.authorityGateway = AuthorityGateway.getInstance();
+
+    }
+
+    public void setAuthorityGateway(AuthorityGateway authorityGateway) {
+        this.authorityGateway = authorityGateway;
     }
 
     /**
@@ -39,6 +45,8 @@ public class BettingRound {
      * Defines the winning bet and the amount of money won
      * Should only be called once in the end of the betting round
      */
-    public void resolveBets() {}
+    public void resolveBets() {
+        int randomNumber = this.authorityGateway.randomInt("");
+    }
 }
 
