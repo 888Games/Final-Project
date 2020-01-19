@@ -47,4 +47,16 @@ public class CardTest {
         card.addBetId("");
     }
 
+    @Test
+    public void generateBetId_Always_ShouldPass(){
+        //arrange
+        Card card = new Card();
+
+        //act
+        card.generateBetId();
+
+
+
+    }
+
 }
