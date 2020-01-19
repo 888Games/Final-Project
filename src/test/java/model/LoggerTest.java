@@ -7,11 +7,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 public class LoggerTest {
-
-    @Test
-    public void log() {
-    }
-
+    
     /**
      * Asserts if log method stores a new log in logs list.
      */
