@@ -6,6 +6,7 @@ import org.mockito.Mock;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class MachineTest {
 
@@ -95,5 +96,33 @@ public class MachineTest {
         Machine machine = new Machine();
         // act
         machine.disconnectCard(card);
+    }
+
+    @Test
+    public void givePrize_ShouldPass() {
+        // arrange
+        Machine machine = new Machine();
+        Bet bet = mock(Bet.class);
+        when(bet.isResolved()).thenReturn(true);
+        // act
+        machine.givePrize(bet);
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void givePrize_WithNullBet_ShouldThrowIllegalArgumentsException() {
+        // arrange
+        Machine machine = new Machine();
+        // act
+        machine.givePrize(null);
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void givePrize_WithUnresolvedBet_ShouldThrowIllegalArgumentsException() {
+        // arrange
+        Machine machine = new Machine();
+        Bet bet = mock(Bet.class);
+        when(bet.isResolved()).thenReturn(false);
+        // act
+        machine.givePrize(bet);
     }
 }
