@@ -5,6 +5,8 @@
 
 > **JavaDoc**: [https://888games.github.io/Final-Project](https://888games.github.io/Final-Project)
 
+![UML Diagram](/documents/uml.svg)
+
 > **This is the template readme**
 
 One Paragraph of project description goes here
