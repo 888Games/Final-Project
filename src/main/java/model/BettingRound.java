@@ -1,6 +1,7 @@
 package model;
 
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,13 +18,22 @@ public class BettingRound {
     /**
      * Creates a new betting round
      */
-    public BettingRound() {}
+    public BettingRound() {
+        this.bets = new ArrayList<>();
+    }
 
     /**
      * Saves the bet in a betting round
      * @param bet Bet to be placed
      */
-    public void placeBet(Bet bet) {}
+    public void placeBet(Bet bet) {
+        if(bet.isResolved()){
+            throw new IllegalArgumentException("Cannot place bet which has already been resolved");
+        }
+        if(!bet.isResolved()){
+            this.bets.add(bet);
+        }
+    }
 
     /**
      * Defines the winning bet and the amount of money won

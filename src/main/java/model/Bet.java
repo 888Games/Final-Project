@@ -26,16 +26,31 @@ public class Bet {
      * @param card Card used to place a bet
      */
     public Bet(Double inValue, Machine machine, Card card) {
+        this.inValue = inValue;
+        this.machine = machine;
+        this.card = card;
+        if (inValue == null || machine == null || card == null){
+            throw new IllegalArgumentException("Values should not be null");
+        }
     }
+
 
     /**
      * Sets the outValue and updates the card credit
      * @param outValue the amount of money won
      */
-    public void resolve(Double outValue){}
+    public void resolve(Double outValue){
+        if(outValue <0 || outValue == null){
+            throw new IllegalArgumentException("outValue should be positive");
+        }
+        this.outValue = outValue;
+    }
 
 
     public boolean isResolved() {
+        if (outValue == null && resolvedAt== null){
+            return false;
+        }
         return true;
     }
 
