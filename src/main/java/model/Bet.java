@@ -34,10 +34,16 @@ public class Bet {
         }
     }
 
+
     /**
      * Sets the outValue and updates the card credit
      * @param outValue the amount of money won
      */
-    public void resolve(Double outValue){}
+    public void resolve(Double outValue){
+        if(outValue <0 || outValue == null){
+            throw new IllegalArgumentException("outValue should be positive");
+        }
+        this.outValue = outValue;
+    }
 
 }
