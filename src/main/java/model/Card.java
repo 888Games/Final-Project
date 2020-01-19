@@ -30,6 +30,9 @@ public class Card {
      * @param betId String value of the bet Id
      */
     public void addBetId(String betId) {
+        if (betId == null){
+            throw new IllegalArgumentException("betId should not be null");
+        }
     betIds.add(betId);
     }
 

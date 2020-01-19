@@ -29,7 +29,7 @@ public class CardTest {
         Assert.assertEquals(expect,card.getBetIds());
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void addBetId_WithNullValue_ShouldThrowIllegalArgumentsException(){
         //arrange
         Card card = new Card();
