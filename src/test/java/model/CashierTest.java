@@ -39,34 +39,62 @@ public class CashierTest {
 
 
     /**
-     * createCard WithPositiveInitialBalance ShouldPass
+     * createCard WithPositiveInitialBalance ShouldNotBeNull
      */
     @Test
-    public void createCard_WithPositiveInitialBalance_ShouldPass() {
+    public void createCard_WithPositiveInitialBalance_ShouldNotBeNull() {
+        // arrange
+        Cashier cashier = Cashier.getInstance();
 
+        // act
+        Card card = cashier.createCard(10.0);
+
+        // assert
+        assertNotNull(card);
     }
 
     /**
-     * createCard WithZeroInitialBalance ShouldPass
+     * createCard WithZeroInitialBalance ShouldNotBeNull
      */
     @Test
-    public void createCard_WithZeroInitialBalance_ShouldPass() {
+    public void createCard_WithZeroInitialBalance_ShouldNotBeNull() {
+        // arrange
+        Cashier cashier = Cashier.getInstance();
 
+        // act
+        Card card = cashier.createCard(0.0);
+
+        // assert
+        assertNotNull(card);
     }
 
     /**
      * createCard WithNegativeInitialBalance ShouldThrowIllegalArgumentsException
      */
-    @Test
+    @Test (expected = IllegalArgumentException.class)
     public void createCard_WithNegativeInitialBalance_ShouldThrowIllegalArgumentsException() {
+        // arrange
+        Cashier cashier = Cashier.getInstance();
+
+        // act
+        Card card = cashier.createCard(-10.0);
+
+        // assert
 
     }
 
     /**
      * createCard WithNullInitialBalance ShouldThrowIllegalArgumentsException
      */
-    @Test
+    @Test (expected = IllegalArgumentException.class)
     public void createCard_WithNullInitialBalance_ShouldThrowIllegalArgumentsException() {
+        // arrange
+        Cashier cashier = Cashier.getInstance();
+
+        // act
+        Card card = cashier.createCard(null);
+
+        // assert
 
     }
 
