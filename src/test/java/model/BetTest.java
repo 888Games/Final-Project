@@ -7,6 +7,7 @@ import org.mockito.internal.matchers.Null;
 import static org.mockito.Mockito.mock;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.verify;
 
 public class BetTest {
 
@@ -72,6 +73,20 @@ public class BetTest {
         //act
         Bet bet = new Bet(2.0,machine,card);
         bet.resolve(null);
+    }
+
+    @Test
+    public void resolveBet_ShouldCallGivePrizeMethodOfMachine(){
+        //arrange
+        Card card = mock(Card.class);
+        Machine machine = mock(Machine.class);
+
+        //act
+        Bet bet = new Bet(2.0,machine,card);
+        bet.resolve(5.2);
+
+        //assert
+        verify(machine).givePrize(bet);
     }
     }
 
