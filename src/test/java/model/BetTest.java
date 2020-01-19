@@ -25,7 +25,11 @@ public class BetTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void createBet_WithNullValues_ShouldThrowIllegalArgumentsException(){
+        //arrange
+        Card card = mock(Card.class);
 
+        //act
+        Bet bet = new Bet(2.0,null,card);
     }
 
     @Test
