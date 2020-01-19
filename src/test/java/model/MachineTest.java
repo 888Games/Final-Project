@@ -280,5 +280,21 @@ public class MachineTest {
         machine.placeBet(card, 1.0);
     }
 
-
+    /**
+     * Validating that a bet can only be made when there is enough credit on the card.
+     */
+    @Test (expected = InsufficientCreditException.class)
+    public void placeBet_WithNotEnoughCreditOnCard_ShouldThrowInsufficientCreditException() {
+        // arrange
+        Machine machine = new Machine();
+        Card card = mock(Card.class);
+        Game game = mock(Game.class);
+        Cashier cashier = mock(Cashier.class);
+        when(cashier.getCardCredit(card)).thenReturn(10.0);
+        machine.setCashier(cashier);
+        machine.setGame(game);
+        machine.connectCard(card);
+        // act
+        machine.placeBet(card, 20.0);
+    }
 }
