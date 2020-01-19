@@ -1,6 +1,8 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Represents a machine
@@ -15,7 +17,12 @@ public class Machine {
     /**
      * Creates a new machine.
      */
-    public Machine(){}
+    public Machine(){
+        machineId = UUID.randomUUID().toString();
+        game = new Game("easy-lottery");
+        connectedCards = new ArrayList<>();
+        cashier = Cashier.getInstance();
+    }
 
     /**
      * Creates a bet with the inValue into the current betting round.
@@ -30,13 +37,26 @@ public class Machine {
      * Connects the card to the machine.
      * @param card to be connected
      */
-    public void connectCard(Card card){}
+    public void connectCard(Card card){
+        if (card != null && !connectedCards.contains(card)){
+            connectedCards.add(card);
+        }
+        else {
+            throw new IllegalArgumentException();
+        }
+    }
 
     /**
      * Disconnects the card from the machine
      * @param card to be disconnected
      */
-    public void disconnectCard(Card card){}
+    public void disconnectCard(Card card){
+        if(card != null && connectedCards.contains(card)){
+            connectedCards.remove(card);
+        }else {
+            throw new IllegalArgumentException();
+        }
+    }
 
     /**
      * Updates the card credit with the outValue of the bet.

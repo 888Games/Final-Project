@@ -88,7 +88,7 @@ public class MachineTest {
         machine.disconnectCard(null);
     }
 
-    @Test
+    @Test (expected = IllegalArgumentException.class)
     public void disconnectCard_WithNotConnectedCard_ShouldThrowIllegalArgumentsException() {
         // arrange
         Card card = mock(Card.class);
