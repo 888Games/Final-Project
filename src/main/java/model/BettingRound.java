@@ -19,6 +19,10 @@ public class BettingRound {
      */
     public BettingRound() {}
 
+    public ZonedDateTime getEndedAt() {
+        return endedAt;
+    }
+
     /**
      * Saves the bet in a betting round
      * @param bet Bet to be placed
