@@ -35,6 +35,9 @@ public class Bet {
         }
     }
 
+    public void setInValue(Double inValue) {
+        this.inValue = inValue;
+    }
 
     /**
      * Sets the outValue and updates the card credit

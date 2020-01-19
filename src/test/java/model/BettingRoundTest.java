@@ -52,9 +52,37 @@ public class BettingRoundTest {
 
         //assert
         verify(authorityGateway).randomInt("");
+    }
+
+    @Test
+    public void resolveBets_ResolvingSingleBet_ShouldPass(){
+        //arrange
+        BettingRound bettingRound = new BettingRound();
+        AuthorityGateway authorityGateway = mock(AuthorityGateway.class);
+        Bet bet1 = mock(Bet.class);
+        Bet bet2 = mock(Bet.class);
+        Bet bet3 = mock(Bet.class);
+        when(authorityGateway.randomInt("")).thenReturn(2);
+
+        //act
+        bet1.setInValue(5.5);
+        bet2.setInValue(2.0);
+        bet3.setInValue(2.5);
+        bettingRound.setAuthorityGateway(authorityGateway);
+        bettingRound.placeBet(bet1);
+        bettingRound.placeBet(bet2);
+        bettingRound.placeBet(bet3);
+
+        bettingRound.resolveBets();
+
+        //assert
+        verify(bet1).resolve(0.0);
+        verify(bet2).resolve(10.0);
+        verify(bet3).resolve(0.0);
 
 
     }
+
 
 
 
