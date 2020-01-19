@@ -92,6 +92,7 @@ public class Machine {
         return connectedCards;
     }
 
+
     public void setCashier(Cashier cashier) {
         this.cashier = cashier;
     }
