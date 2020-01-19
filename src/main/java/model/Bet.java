@@ -48,12 +48,10 @@ public class Bet {
 
 
     public boolean isResolved() {
-        return true;
-    }
-
-
-    public boolean isResolved() {
-        return true;
+        if (outValue == null && resolvedAt== null){
+            return true;
+        }
+        return false;
     }
 
     public Double getOutValue() {
