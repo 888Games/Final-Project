@@ -56,7 +56,6 @@ public class CardTest {
         card.generateBetId();
 
 
-
     }
 
 }

@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 
 /**
@@ -44,7 +45,8 @@ public class Card {
      * @return  betId String value of the generated bet Id
      */
     public String generateBetId() {
-        return "";
+        String betId = UUID.randomUUID().toString();
+        return betId;
     }
 
 }
