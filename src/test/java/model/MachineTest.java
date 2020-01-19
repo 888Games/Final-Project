@@ -5,11 +5,16 @@ import org.mockito.Mock;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
+/**
+ * Tests for machine model
+ */
 public class MachineTest {
 
+    /**
+     * validating the machine constructor. No parameters, all attributes are hard-coded initialized in the constructor.
+     */
     @Test
     public void createMachine_Always_ShouldPass() {
         // arrange
@@ -18,6 +23,9 @@ public class MachineTest {
         assertTrue("Machine is created successfully", machine != null);
     }
 
+    /**
+     * Validating connecting a card to an existing machine. Card should show up in the stored cards of the machine.
+     */
     @Test
     public void connectCard_ShouldPass() {
         // arrange
@@ -29,6 +37,9 @@ public class MachineTest {
         assertTrue("Card should be stored in the connected Cards list", machine.getConnectedCards().contains(card));
     }
 
+    /**
+     * Validating connecting multiple cards to an existing machine. Card should show up in the stored cards of the machine.
+     */
     @Test
     public void connectMultipleCards_ShouldPass() {
         // arrange
@@ -42,6 +53,10 @@ public class MachineTest {
         assertTrue("Both cards should be stored in the connected Cards list", machine.getConnectedCards().contains(card1) && machine.getConnectedCards().contains(card2));
     }
 
+
+    /**
+     * Validating that null values are not allowed.
+     */
     @Test (expected = IllegalArgumentException.class)
     public void connectCard_WithNullCard_ShouldThrowIllegalArgumentsException() {
         // arrange
@@ -50,6 +65,9 @@ public class MachineTest {
         machine.connectCard(null);
     }
 
+    /**
+     * Validating that a card can only be connected once.
+     */
     @Test (expected = IllegalArgumentException.class)
     public void connectCard_WithAlreadyConnectedCard_ShouldThrowIllegalArgumentsException() {
         // arrange
@@ -60,6 +78,9 @@ public class MachineTest {
         machine.connectCard(card);
     }
 
+    /**
+     * Validating that when disconnecting a card the card is removed from the machine connected cards.
+     */
     @Test
     public void disconnectCard_ShouldPass() {
         // arrange
@@ -74,6 +95,9 @@ public class MachineTest {
 
     }
 
+    /**
+     * Validating that a machine can handle multiple cards at the same time.
+     */
     @Test
     public void disconnectMultipleCards_ShouldPass() {
         // arrange
@@ -90,6 +114,9 @@ public class MachineTest {
 
     }
 
+    /**
+     * Validating that null values are not allowed.
+     */
     @Test (expected = IllegalArgumentException.class)
     public void disconnectCard_WithNullCard_ShouldThrowIllegalArgumentsException() {
         // arrange
@@ -100,6 +127,9 @@ public class MachineTest {
         machine.disconnectCard(null);
     }
 
+    /**
+     * Validating that a not connected card can not be disconnected.
+     */
     @Test (expected = IllegalArgumentException.class)
     public void disconnectCard_WithNotConnectedCard_ShouldThrowIllegalArgumentsException() {
         // arrange
@@ -109,6 +139,9 @@ public class MachineTest {
         machine.disconnectCard(card);
     }
 
+    /**
+     * Validating that teh give prize method updates teh card credit through the cashier.
+     */
     @Test
     public void givePrize_ShouldPass() {
         // arrange
@@ -121,6 +154,9 @@ public class MachineTest {
         machine.givePrize(bet);
     }
 
+    /**
+     * Validating that null values are not allowed.
+     */
     @Test (expected = IllegalArgumentException.class)
     public void givePrize_WithNullBet_ShouldThrowIllegalArgumentsException() {
         // arrange
@@ -129,6 +165,9 @@ public class MachineTest {
         machine.givePrize(null);
     }
 
+    /**
+     * Validating that an unresolved bet can not be given a prize.
+     */
     @Test (expected = IllegalArgumentException.class)
     public void givePrize_WithUnresolvedBet_ShouldThrowIllegalArgumentsException() {
         // arrange
@@ -141,6 +180,9 @@ public class MachineTest {
         machine.givePrize(bet);
     }
 
+    /**
+     * Validating that a bet can not be placed with a negative number.
+     */
     @Test(expected = IllegalArgumentException.class)
     public void placeBet_WithNegativeInValue_ShouldThrowIllegalArgumentsException() {
         // arrange
@@ -151,6 +193,9 @@ public class MachineTest {
         machine.placeBet(card, -1.0);
     }
 
+    /**
+     * Validating that a bet can be placed with a positive number.
+     */
     @Test
     public void placeBet_WithPositiveInValue_ShoudlPass() {
         // arrange
@@ -161,6 +206,9 @@ public class MachineTest {
         machine.placeBet(card, 1.0);
     }
 
+    /**
+     * Validating that a bet can be placed without money.
+     */
     @Test
     public void placeBet_WithZeroInValue_ShouldPass() {
         // arrange
@@ -171,6 +219,9 @@ public class MachineTest {
         machine.placeBet(card, 0.0);
     }
 
+    /**
+     * Validating that null values are not allowed.
+     */
     @Test (expected = IllegalArgumentException.class)
     public void placeBet_WithNullInValue_ShouldThrowIllegalArgumentsException() {
         // arrange
@@ -181,6 +232,26 @@ public class MachineTest {
         machine.placeBet(card, null);
     }
 
+    /**
+     * Validating that the card credit gets updated through teh cashier as soon as the bet was placed.
+     */
+    @Test
+    public void placeBet_WithValidBet_CardCreditShouldBeUpdatedThroughCashier() {
+        // arrange
+        Machine machine = new Machine();
+        Cashier cashier = mock(Cashier.class);
+        Card card = mock(Card.class);
+        machine.setCashier(cashier);
+        machine.connectCard(card);
+        // act
+        machine.placeBet(card, 1.0);
+        //assert
+        verify(cashier).updateCardCredit(card, -1.0);
+    }
+
+    /**
+     * Validating that the card for the bet is connected to the machine.
+     */
     @Test (expected = IllegalArgumentException.class)
     public void placeBet_WithNotConnectedCard_ShouldThrowIllegalArgumentsException() {
         // arrange
@@ -190,6 +261,9 @@ public class MachineTest {
         machine.placeBet(card, 1.0);
     }
 
+    /**
+     * Validating that a bet can only be made when there is a running betting round.
+     */
     @Test (expected = InvalidBettingRoundException.class)
     public void placeBet_WithNoCurrentBettingRound_ShouldThrowInvalidBettingRoundException() {
         // arrange
@@ -205,4 +279,6 @@ public class MachineTest {
         when(game.getCurrentBettingRound()).thenReturn(null);
         machine.placeBet(card, 1.0);
     }
+
+
 }

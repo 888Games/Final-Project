@@ -91,4 +91,8 @@ public class Machine {
     public List<Card> getConnectedCards() {
         return connectedCards;
     }
+
+    public void setCashier(Cashier cashier) {
+        this.cashier = cashier;
+    }
 }
