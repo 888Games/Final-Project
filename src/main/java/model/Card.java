@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -17,7 +18,7 @@ public class Card {
      * Should only be called by the cashier
      */
     public Card(){
-
+    this.betIds = new ArrayList<>();
     }
 
     public List<String> getBetIds() {
@@ -29,7 +30,7 @@ public class Card {
      * @param betId String value of the bet Id
      */
     public void addBetId(String betId) {
-
+    betIds.add(betId);
     }
 
     /**
