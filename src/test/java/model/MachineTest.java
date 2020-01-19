@@ -312,6 +312,7 @@ public class MachineTest {
         verifyNoMoreInteractions(cashier);
         when(game.getCurrentBettingRound()).thenReturn(null);
         machine.placeBet(card, 1.0);
+        verify(game).getCurrentBettingRound();
     }
 
     /**

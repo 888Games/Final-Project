@@ -26,6 +26,7 @@ public class Bet {
      * @param card Card used to place a bet
      */
     public Bet(Double inValue, Machine machine, Card card) {
+        this.createdAt = ZonedDateTime.now();
         this.inValue = inValue;
         this.machine = machine;
         this.card = card;
@@ -34,6 +35,9 @@ public class Bet {
         }
     }
 
+    public void setInValue(Double inValue) {
+        this.inValue = inValue;
+    }
 
     /**
      * Sets the outValue and updates the card credit
@@ -44,6 +48,9 @@ public class Bet {
             throw new IllegalArgumentException("outValue should be positive");
         }
         this.outValue = outValue;
+        this.resolvedAt = ZonedDateTime.now();
+        this.machine.givePrize(this);
+
     }
 
 
@@ -56,6 +63,10 @@ public class Bet {
 
     public Double getOutValue() {
         return outValue;
+    }
+
+    public Double getInValue() {
+        return inValue;
     }
 
     public Card getCard() {
