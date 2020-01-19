@@ -1,10 +1,9 @@
 package model;
 
 import org.junit.Test;
-import static org.mockito.Mockito.mock;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class BettingRoundTest {
 
@@ -39,6 +38,22 @@ public class BettingRoundTest {
         //act
         bettingRound.placeBet(bet);
     }
+
+    @Test
+    public void resolveBets_CallingAuthority_ShouldPass(){
+        //arrange
+        BettingRound bettingRound = new BettingRound();
+        AuthorityGateway authorityGateway = mock(AuthorityGateway.class);
+
+        //act
+        bettingRound.resolveBets();
+
+        //assert
+        verify(authorityGateway).randomInt("test");
+
+
+    }
+
 
 
 }
