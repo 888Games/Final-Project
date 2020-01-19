@@ -7,7 +7,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 public class LoggerTest {
-    
+
     /**
      * Asserts if log method stores a new log in logs list.
      */
@@ -57,6 +57,7 @@ public class LoggerTest {
         //arrange
         Logger logger = new Logger();
         AuthorityGateway ag = mock(AuthorityGateway.class);
+        logger.setAuthorityGateway(ag);
         String message = "A shining crescent far beneath the flying vessel.";
         //act
         logger.log(message);
