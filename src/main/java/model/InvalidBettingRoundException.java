@@ -1,4 +1,4 @@
 package model;
 
-public class InvalidBettingRoundException extends Throwable {
+public class InvalidBettingRoundException extends RuntimeException {
 }

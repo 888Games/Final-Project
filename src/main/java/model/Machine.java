@@ -33,9 +33,14 @@ public class Machine {
      */
     public void placeBet(Card card, Double inValue) {
 
-        if(card != null && connectedCards.contains(card) && inValue != null &&inValue >= 0 && game.getCurrentBettingRound() != null){
-            cashier.updateCardCredit(card,(0 - inValue));
-            game.getCurrentBettingRound().placeBet(new Bet(inValue, this, card));
+        if(card != null && connectedCards.contains(card) && inValue != null &&inValue >= 0){
+
+            if(game.getCurrentBettingRound() != null){
+                cashier.updateCardCredit(card,(0 - inValue));
+                game.getCurrentBettingRound().placeBet(new Bet(inValue, this, card));
+            } else {
+                throw new InvalidBettingRoundException();
+            }
 
         }else {
             throw new IllegalArgumentException();
@@ -77,5 +82,13 @@ public class Machine {
         }else {
             throw new IllegalArgumentException();
         }
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
+    }
+
+    public List<Card> getConnectedCards() {
+        return connectedCards;
     }
 }

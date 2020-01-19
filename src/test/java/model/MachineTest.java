@@ -15,7 +15,7 @@ public class MachineTest {
         // arrange
         Machine machine = new Machine();
         //assert
-        assertTrue(machine != null);
+        assertTrue("Machine is created successfully", machine != null);
     }
 
     @Test
@@ -25,6 +25,8 @@ public class MachineTest {
         Machine machine = new Machine();
         // act
         machine.connectCard(card);
+        // assert
+        assertTrue("Card should be stored in the connected Cards list", machine.getConnectedCards().contains(card));
     }
 
     @Test
@@ -36,6 +38,8 @@ public class MachineTest {
         // act
         machine.connectCard(card1);
         machine.connectCard(card2);
+        // assert
+        assertTrue("Both cards should be stored in the connected Cards list", machine.getConnectedCards().contains(card1) && machine.getConnectedCards().contains(card2));
     }
 
     @Test (expected = IllegalArgumentException.class)
@@ -64,6 +68,10 @@ public class MachineTest {
         machine.connectCard(card);
         // act
         machine.disconnectCard(card);
+        // assert
+        assertTrue("Card should be removed from the connected Cards list", !machine.getConnectedCards().contains(card));
+
+
     }
 
     @Test
@@ -77,6 +85,9 @@ public class MachineTest {
         // act
         machine.disconnectCard(card2);
         machine.disconnectCard(card1);
+        // assert
+        assertTrue("Both cards should be removed from the connected Cards list", !machine.getConnectedCards().contains(card1) && !machine.getConnectedCards().contains(card2));
+
     }
 
     @Test (expected = IllegalArgumentException.class)
@@ -184,10 +195,14 @@ public class MachineTest {
         // arrange
         Machine machine = new Machine();
         Card card = mock(Card.class);
+        Game game = mock(Game.class);
+        machine.setGame(game);
+        machine.connectCard(card);
         // act
         machine.placeBet(card, 1.0);
-        machine.placeBet(card, 1.0);
-        machine.placeBet(card, 1.0);
+        machine.placeBet(card, 0.0);
+        machine.placeBet(card, 0.0);
+        when(game.getCurrentBettingRound()).thenReturn(null);
         machine.placeBet(card, 1.0);
     }
 }
