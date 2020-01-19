@@ -34,4 +34,16 @@ public class Bet {
      */
     public void resolve(Double outValue){}
 
+
+    public boolean isResolved() {
+        return true;
+    }
+
+    public Double getOutValue() {
+        return outValue;
+    }
+
+    public Card getCard() {
+        return card;
+    }
 }
