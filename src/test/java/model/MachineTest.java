@@ -160,7 +160,15 @@ public class MachineTest {
         machine.placeBet(card, 0.0);
     }
 
-
+    @Test (expected = IllegalArgumentException.class)
+    public void placeBet_WithNullInValue_ShouldThrowIllegalArgumentsException() {
+        // arrange
+        Machine machine = new Machine();
+        Card card = mock(Card.class);
+        machine.connectCard(card);
+        // act
+        machine.placeBet(card, null);
+    }
 
     @Test (expected = IllegalArgumentException.class)
     public void placeBet_WithNotConnectedCard_ShouldThrowIllegalArgumentsException() {
@@ -171,5 +179,15 @@ public class MachineTest {
         machine.placeBet(card, 1.0);
     }
 
-
+    @Test (expected = InvalidBettingRoundException.class)
+    public void placeBet_WithNoCurrentBettingRound_ShouldThrowInvalidBettingRoundException() {
+        // arrange
+        Machine machine = new Machine();
+        Card card = mock(Card.class);
+        // act
+        machine.placeBet(card, 1.0);
+        machine.placeBet(card, 1.0);
+        machine.placeBet(card, 1.0);
+        machine.placeBet(card, 1.0);
+    }
 }
