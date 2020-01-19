@@ -1,5 +1,7 @@
 package model;
 
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -25,9 +27,13 @@ public class Game {
         } else {
             this.gameId = UUID.randomUUID().toString();
             this.gameName = name;
-            this.bettingRounds = new ArrayList<>();
             this.gameLog = new Logger();
             this.authorityGateway = AuthorityGateway.getInstance();
+            this.bettingRounds = new ArrayList<>();
+            BettingRound nextRound = new BettingRound();
+            this.bettingRounds.add(nextRound);
+            this.gameLog.log(ZonedDateTime.now(ZoneId.of("UTC")) + " Game round was created with token " + nextRound.getBettingRoundId());
+
         }
     }
 

@@ -57,16 +57,16 @@ public class GameTest {
     }
 
     /**
-     * Asserts if an empty list for BettingRounds has been created in the constructor.
+     * Asserts if a list for BettingRounds has been created in the constructor and the first BettingRound was added.
      */
     @Test
-    public void bettingRounds_AfterCreation_ShouldBeEmptyList() {
+    public void bettingRounds_AfterCreation_ShouldContainOneItem() {
         //arrange
         String name = "Bingo";
         //act
         Game game = new Game(name);
         //assert
-        assertEquals(0, game.getBettingRounds().size());
+        assertEquals(1, game.getBettingRounds().size());
     }
 
     /**
@@ -92,14 +92,11 @@ public class GameTest {
         String name = "Bingo";
         Game game = new Game(name);
         BettingRound br1 = mock(BettingRound.class);
-        BettingRound br2 = mock(BettingRound.class);
         when(br1.getEndedAt()).thenReturn(ZonedDateTime.of(2020, 01, 01, 0, 0, 0, 0, ZoneId.of("UTC")));
-        when(br2.getEndedAt()).thenReturn(null);
         //act
         game.getBettingRounds().add(br1);
-        game.getBettingRounds().add(br2);
         //assert
-        assertEquals(game.getCurrentBettingRound(), br2);
+        assertEquals(game.getCurrentBettingRound(), game.getBettingRounds().get(0));
     }
 
     /**
@@ -111,14 +108,17 @@ public class GameTest {
         //arrange
         String name = "Bingo";
         Game game = new Game(name);
-        //act
         BettingRound br1 = mock(BettingRound.class);
         BettingRound br2 = mock(BettingRound.class);
+        game.getBettingRounds().get(0).setEndedAt(ZonedDateTime.of(2020, 01, 01, 0, 0, 0, 0, ZoneId.of("UTC")));
         when(br1.getEndedAt()).thenReturn(ZonedDateTime.of(2020, 01, 01, 0, 0, 0, 0, ZoneId.of("UTC")));
         when(br2.getEndedAt()).thenReturn(ZonedDateTime.of(2020, 01, 11, 0, 0, 0, 0, ZoneId.of("UTC")));
+        //act
         game.getBettingRounds().add(br1);
         game.getBettingRounds().add(br2);
         //assert
         assertNull(game.getCurrentBettingRound());
     }
+
+
 }
