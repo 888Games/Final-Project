@@ -66,7 +66,6 @@ public class GameTest {
         //act
         Game game = new Game(name);
         //assert
-        assertEquals(null, game.getBettingRounds());
         assertEquals(0, game.getBettingRounds().size());
     }
 
