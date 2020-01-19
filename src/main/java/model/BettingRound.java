@@ -50,7 +50,6 @@ public class BettingRound {
         Double finalOutValue = 0.0;
         for (Bet bet : bets){
             finalOutValue = bet.getInValue() + finalOutValue;
-            System.out.println(bet.getInValue());
             if(bets.indexOf(bet) != randomNumber-1){
                 bet.resolve(0.0);
             }
