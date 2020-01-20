@@ -74,6 +74,13 @@ public class Cashier {
      * @return credit Double Cash to withdraw.
      */
     public Double cashOutCard(Card card) {
-        return 0.0;
+        if (card == null) throw new IllegalArgumentException();
+        if (!cardCredits.containsKey(card)) throw new IllegalArgumentException();
+
+        CardCredit cardCredit = cardCredits.get(card);
+        Double credit = cardCredit.getCredit();
+        cardCredit.setCredit(0.0);
+
+        return credit;
     }
 }
