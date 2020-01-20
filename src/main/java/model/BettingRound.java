@@ -28,6 +28,18 @@ public class BettingRound {
         this.authorityGateway = authorityGateway;
     }
 
+    public String getBettingRoundId() {
+        return bettingRoundId;
+    }
+
+    public ZonedDateTime getEndedAt() {
+        return endedAt;
+    }
+
+    public void setEndedAt(ZonedDateTime endedAt) {
+        this.endedAt = endedAt;
+    }
+
     /**
      * Saves the bet in a betting round
      * @param bet Bet to be placed
