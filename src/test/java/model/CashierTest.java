@@ -196,7 +196,7 @@ public class CashierTest {
      * cashOutCard WithNullCard ShouldThrowIllegalArgumentsException
      */
     @Test
-    public void cashOutCard__WithNullCard_ShouldThrowIllegalArgumentsException() {
+    public void cashOutCard_WithNullCard_ShouldThrowIllegalArgumentsException() {
 
     }
 
@@ -204,7 +204,7 @@ public class CashierTest {
      * cashOutCard WithACardNotCreatedByTheCashier ShouldThrowIllegalArgumentsException
      */
     @Test
-    public void cashOutCard__WithACardNotCreatedByTheCashier_ShouldThrowIllegalArgumentsException() {
+    public void cashOutCard_WithACardNotCreatedByTheCashier_ShouldThrowIllegalArgumentsException() {
 
     }
 
@@ -214,54 +214,123 @@ public class CashierTest {
      */
     @Test
     public void updateCardCredit_ShouldPass() {
+        // arrange
+        Cashier cashier = Cashier.getInstance();
+        Double initialCredit = 10.0;
+        Card card = cashier.createCard(initialCredit);
+
+        // act
+        Double creditVariation = 5.0;
+        cashier.updateCardCredit(card, creditVariation);
+
+        // assert
 
     }
 
     /**
      * updateCardCredit WithNullCard ShouldThrowIllegalArgumentsException
      */
-    @Test
+    @Test (expected = IllegalArgumentException.class)
     public void updateCardCredit_WithNullCard_ShouldThrowIllegalArgumentsException() {
+        // arrange
+        Cashier cashier = Cashier.getInstance();
+
+        // act
+        Double creditVariation = 5.0;
+        cashier.updateCardCredit(null, creditVariation);
+
+        // assert
 
     }
 
     /**
      * updateCardCredit WithNullCredit ShouldThrowIllegalArgumentsException
      */
-    @Test
+    @Test (expected = IllegalArgumentException.class)
     public void updateCardCredit_WithNullCredit_ShouldThrowIllegalArgumentsException() {
+        // arrange
+        Cashier cashier = Cashier.getInstance();
+        Double initialCredit = 10.0;
+        Card card = cashier.createCard(initialCredit);
+
+        // act
+        cashier.updateCardCredit(card, null);
+
+        // assert
 
     }
 
     /**
-     * updateCardCredit WithPositiveCredit ShouldPass
+     * updateCardCredit WithPositiveCredit ShouldReturnSum
      */
     @Test
-    public void updateCardCredit_WithPositiveCredit_ShouldPass() {
+    public void updateCardCredit_WithPositiveCredit_ShouldReturnSum() {
+        // arrange
+        Cashier cashier = Cashier.getInstance();
+        Double initialCredit = 10.0;
+        Card card = cashier.createCard(initialCredit);
 
+        // act
+        Double creditVariation = 5.0;
+        cashier.updateCardCredit(card, creditVariation);
+        Double credit = cashier.getCardCredit(card);
+
+        // assert
+        assertEquals(initialCredit + creditVariation, credit, 0.0);
     }
 
     /**
-     * updateCardCredit WithZeroCredit ShouldPass
+     * updateCardCredit WithZeroCredit ShouldReturnOldCredit
      */
     @Test
-    public void updateCardCredit_WithZeroCredit_ShouldPass() {
+    public void updateCardCredit_WithZeroCredit_ShouldOldCredit() {
+        // arrange
+        Cashier cashier = Cashier.getInstance();
+        Double initialCredit = 10.0;
+        Card card = cashier.createCard(initialCredit);
 
+        // act
+        Double creditVariation = 0.0;
+        cashier.updateCardCredit(card, creditVariation);
+        Double credit = cashier.getCardCredit(card);
+
+        // assert
+        assertEquals(initialCredit, credit, 0.0);
     }
 
     /**
-     * updateCardCredit WithNegativeCredit ShouldPass
+     * updateCardCredit WithNegativeCredit ShouldReturnSubtraction
      */
     @Test
-    public void updateCardCredit_WithNegativeCredit_ShouldPass() {
+    public void updateCardCredit_WithNegativeCredit_ShouldReturnSubtraction() {
+        // arrange
+        Cashier cashier = Cashier.getInstance();
+        Double initialCredit = 10.0;
+        Card card = cashier.createCard(initialCredit);
 
+        // act
+        Double creditVariation = -5.0;
+        cashier.updateCardCredit(card, creditVariation);
+        Double credit = cashier.getCardCredit(card);
+
+        // assert
+        assertEquals(initialCredit + creditVariation, credit, 0.0);
     }
 
     /**
      * updateCardCredit WithACardThatDoesntHaveEnoughCredit ShouldThrowInsufficientCreditException
      */
-    @Test
+    @Test (expected = InsufficientCreditException.class)
     public void updateCardCredit_WithACardThatDoesntHaveEnoughCredit_ShouldThrowInsufficientCreditException() {
+        // arrange
+        Cashier cashier = Cashier.getInstance();
+        Double initialCredit = 10.0;
+        Card card = cashier.createCard(initialCredit);
 
+        // act
+        Double creditVariation = -15.0;
+        cashier.updateCardCredit(card, creditVariation);
+
+        // assert
     }
 }
