@@ -100,11 +100,37 @@ public class CashierTest {
 
 
     /**
-     * getCardCredit Always ShouldPass
+     * getCardCredit Always ShouldNotBeNull
      */
     @Test
-    public void getCardCredit_ShouldPass() {
+    public void getCardCredit_ShouldNotBeNull() {
+        // arrange
+        Cashier cashier = Cashier.getInstance();
+        Double initialCredit = 10.0;
+        Card card = cashier.createCard(initialCredit);
 
+        // act
+        Double credit = cashier.getCardCredit(card);
+
+        // assert
+        assertNotNull(credit);
+    }
+
+    /**
+     * getCardCredit WithoutUpdatingCredit ShouldReturnInitialCredit
+     */
+    @Test
+    public void getCardCredit_WithoutUpdatingCredit_ShouldReturnInitialCredit() {
+        // arrange
+        Cashier cashier = Cashier.getInstance();
+        Double initialCredit = 10.0;
+        Card card = cashier.createCard(initialCredit);
+
+        // act
+        Double credit = cashier.getCardCredit(card);
+
+        // assert
+        assertEquals(credit, initialCredit);
     }
 
     /**
@@ -112,22 +138,48 @@ public class CashierTest {
      */
     @Test
     public void getCardCredit_AfterUpdatingCredit_ShouldUpdateTheReturnValue() {
+        // arrange
+        Cashier cashier = Cashier.getInstance();
+        Double initialCredit = 10.0;
+        Card card = cashier.createCard(initialCredit);
 
+        // act
+        Double creditVariation = 5.0;
+        cashier.updateCardCredit(card, creditVariation);
+        Double credit = cashier.getCardCredit(card);
+
+        // assert
+        assertEquals(credit, initialCredit + creditVariation, 0.0);
     }
 
     /**
      * getCardCredit WithNullCard ShouldThrowIllegalArgumentsException
      */
-    @Test
+    @Test (expected = IllegalArgumentException.class)
     public void getCardCredit_WithNullCard_ShouldThrowIllegalArgumentsException() {
+        // arrange
+        Cashier cashier = Cashier.getInstance();
+
+        // act
+        Double credit = cashier.getCardCredit(null);
+
+        // assert
 
     }
 
     /**
      * getCardCredit WithACardNotCreatedByTheCashier ShouldThrowIllegalArgumentsException
      */
-    @Test
-    public void getCardCredit__WithACardNotCreatedByTheCashier_ShouldThrowIllegalArgumentsException() {
+    @Test (expected = IllegalArgumentException.class)
+    public void getCardCredit_WithACardNotCreatedByTheCashier_ShouldThrowIllegalArgumentsException() {
+        // arrange
+        Cashier cashier = Cashier.getInstance();
+        Card card = new Card();
+
+        // act
+        Double credit = cashier.getCardCredit(card);
+
+        // assert
 
     }
 
