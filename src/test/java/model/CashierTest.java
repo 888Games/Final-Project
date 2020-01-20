@@ -18,7 +18,7 @@ public class CashierTest {
 
 
         // assert
-        assertNotNull(cashier);
+        assertNotNull("Cashier instance should not null", cashier);
     }
 
     /**
@@ -34,7 +34,7 @@ public class CashierTest {
 
 
         // assert
-        assertEquals(cashier1, cashier2);
+        assertEquals("Cashier instances are different", cashier1, cashier2);
     }
 
 
@@ -50,7 +50,7 @@ public class CashierTest {
         Card card = cashier.createCard(10.0);
 
         // assert
-        assertNotNull(card);
+        assertNotNull("Card should not be null", card);
     }
 
     /**
@@ -65,7 +65,7 @@ public class CashierTest {
         Card card = cashier.createCard(0.0);
 
         // assert
-        assertNotNull(card);
+        assertNotNull("Card should not be null", card);
     }
 
     /**
@@ -113,7 +113,7 @@ public class CashierTest {
         Double credit = cashier.getCardCredit(card);
 
         // assert
-        assertNotNull(credit);
+        assertNotNull("Credit should not be null", credit);
     }
 
     /**
@@ -130,7 +130,7 @@ public class CashierTest {
         Double credit = cashier.getCardCredit(card);
 
         // assert
-        assertEquals(credit, initialCredit);
+        assertEquals("Credit should stay the same", credit, initialCredit);
     }
 
     /**
