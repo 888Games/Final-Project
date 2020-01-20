@@ -40,6 +40,10 @@ public class BettingRound {
         this.endedAt = endedAt;
     }
 
+    public void setBettingRoundLog(Logger bettingRoundLog) {
+        this.bettingRoundLog = bettingRoundLog;
+    }
+
     /**
      * Saves the bet in a betting round
      * @param bet Bet to be placed
@@ -74,8 +78,9 @@ public class BettingRound {
     /**
      * Logging Betting round
      */
-    public void loggingBettingRound(){
-
+    public void loggingBettingRound(String logMessage){
+    this.bettingRoundLog.setAuthorityGateway(authorityGateway);
+    this.bettingRoundLog.log(logMessage);
     }
 }
 

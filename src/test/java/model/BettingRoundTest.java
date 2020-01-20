@@ -115,10 +115,11 @@ public class BettingRoundTest {
 
 
         //act
-       bettingRound.loggingBettingRound();
+        bettingRound.setBettingRoundLog(logger);
+       bettingRound.loggingBettingRound("Test");
 
         //assert
-        verify(logger).log("");
+        verify(logger).log("Test");
     }
 
 
