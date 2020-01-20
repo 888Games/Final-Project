@@ -54,7 +54,16 @@ public class Cashier {
      * @param credit Double Added credit from the current credit of the card. May be negative.
      */
     public void updateCardCredit(Card card, Double credit){
+        if (card == null) throw new IllegalArgumentException();
+        if (credit == null) throw new IllegalArgumentException();
 
+        CardCredit cardCredit = cardCredits.get(card);
+        Double oldCredit = cardCredit.getCredit();
+        Double newCredit = oldCredit + credit;
+
+        if (newCredit < 0) throw new InsufficientCreditException();
+
+        cardCredit.setCredit(newCredit);
     }
 
     /**
