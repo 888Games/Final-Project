@@ -42,7 +42,9 @@ public class Cashier {
      * @return credit Double current card's credit
      */
     public Double getCardCredit(Card card){
-        return 0.0;
+        if(!cardCredits.containsKey(card)) throw new IllegalArgumentException();
+
+        return cardCredits.get(card).getCredit();
     }
 
     /**

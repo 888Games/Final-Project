@@ -12,6 +12,7 @@ public class CardCredit {
      * @param initialCredit first amount of money
      */
     public CardCredit(Double initialCredit) {
+        this.credit = initialCredit;
         this.initialCredit = initialCredit;
     }
 

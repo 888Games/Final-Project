@@ -149,7 +149,7 @@ public class CashierTest {
         Double credit = cashier.getCardCredit(card);
 
         // assert
-        assertEquals(credit, initialCredit + creditVariation, 0.0);
+        assertEquals(initialCredit + creditVariation, credit, 0.0);
     }
 
     /**
