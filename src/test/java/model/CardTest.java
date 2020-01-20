@@ -34,7 +34,7 @@ public class CardTest {
         expect.add("25");
         expect.add("23");
 
-        Assert.assertEquals(expect,card.getBetIds());
+        Assert.assertEquals("Could not add betIds",expect,card.getBetIds());
     }
 
     /**

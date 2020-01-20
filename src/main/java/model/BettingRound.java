@@ -21,7 +21,6 @@ public class BettingRound {
     public BettingRound() {
         this.bets = new ArrayList<>();
         this.authorityGateway = AuthorityGateway.getInstance();
-
     }
 
     public void setAuthorityGateway(AuthorityGateway authorityGateway) {
@@ -38,6 +37,10 @@ public class BettingRound {
 
     public void setEndedAt(ZonedDateTime endedAt) {
         this.endedAt = endedAt;
+    }
+
+    public void setBettingRoundLog(Logger bettingRoundLog) {
+        this.bettingRoundLog = bettingRoundLog;
     }
 
     /**
@@ -67,7 +70,16 @@ public class BettingRound {
             }
         }
         bets.get(randomNumber-1).resolve(finalOutValue);
+        this.loggingBettingRound("BettingRound ends");
+    }
 
+
+    /**
+     * Logging Betting round
+     */
+    public void loggingBettingRound(String logMessage){
+    this.bettingRoundLog.setAuthorityGateway(authorityGateway);
+    this.bettingRoundLog.log(logMessage);
     }
 }
 
