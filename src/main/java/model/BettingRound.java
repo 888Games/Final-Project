@@ -70,6 +70,7 @@ public class BettingRound {
             }
         }
         bets.get(randomNumber-1).resolve(finalOutValue);
+        this.loggingBettingRound("BettingRound ends");
     }
 
 
