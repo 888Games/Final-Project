@@ -333,4 +333,20 @@ public class CashierTest {
 
         // assert
     }
+
+    /**
+     * updateCardCredit WithACardNotCreatedByTheCashier ShouldThrowIllegalArgumentsException
+     */
+    @Test (expected = InsufficientCreditException.class)
+    public void updateCardCredit_WithACardNotCreatedByTheCashier_ShouldThrowIllegalArgumentsException() {
+        // arrange
+        Cashier cashier = Cashier.getInstance();
+        Card card = new Card();
+
+        // act
+        Double creditVariation = 5.0;
+        cashier.updateCardCredit(card, creditVariation);
+
+        // assert
+    }
 }
