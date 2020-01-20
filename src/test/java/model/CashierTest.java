@@ -337,7 +337,7 @@ public class CashierTest {
     /**
      * updateCardCredit WithACardNotCreatedByTheCashier ShouldThrowIllegalArgumentsException
      */
-    @Test (expected = InsufficientCreditException.class)
+    @Test (expected = IllegalArgumentException.class)
     public void updateCardCredit_WithACardNotCreatedByTheCashier_ShouldThrowIllegalArgumentsException() {
         // arrange
         Cashier cashier = Cashier.getInstance();
