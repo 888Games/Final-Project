@@ -56,6 +56,7 @@ public class Cashier {
     public void updateCardCredit(Card card, Double credit){
         if (card == null) throw new IllegalArgumentException();
         if (credit == null) throw new IllegalArgumentException();
+        if (!cardCredits.containsKey(card)) throw new IllegalArgumentException();
 
         CardCredit cardCredit = cardCredits.get(card);
         Double oldCredit = cardCredit.getCredit();
