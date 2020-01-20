@@ -26,7 +26,7 @@ public class BetTest {
         Bet bet = new Bet(2.0,machine,card);
 
         //assert
-        assertTrue(bet != null);
+        assertTrue("Bet has not been created correctly",bet != null);
 
     }
 

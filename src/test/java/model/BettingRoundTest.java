@@ -106,7 +106,7 @@ public class BettingRoundTest {
     }
 
     /**
-     * Validating that when a BettingRound starts it is logged
+     * Validating that when a BettingRound ends it is logged
      */
     @Test
     public void resolveBets_IsLogged_ShouldPass(){
