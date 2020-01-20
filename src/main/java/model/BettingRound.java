@@ -21,7 +21,6 @@ public class BettingRound {
     public BettingRound() {
         this.bets = new ArrayList<>();
         this.authorityGateway = AuthorityGateway.getInstance();
-
     }
 
     public void setAuthorityGateway(AuthorityGateway authorityGateway) {
@@ -71,7 +70,6 @@ public class BettingRound {
             }
         }
         bets.get(randomNumber-1).resolve(finalOutValue);
-
     }
 
 

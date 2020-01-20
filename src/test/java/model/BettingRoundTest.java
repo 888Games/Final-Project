@@ -22,6 +22,8 @@ public class BettingRoundTest {
         assertTrue("BettingRound not created successfully",bettingRound != null);
     }
 
+
+
     /**
      * Validating that a bet can be placed on a bettingRound if it has not been resolved yet.
      */
@@ -101,6 +103,36 @@ public class BettingRoundTest {
         verify(bet2).resolve(10.0);
         verify(bet3).resolve(0.0);
 
+    }
+
+    /**
+     * Validating that when a BettingRound starts it is logged
+     */
+    @Test
+    public void resolveBets_IsLogged_ShouldPass(){
+        //arrange
+        BettingRound bettingRound = new BettingRound();
+        AuthorityGateway authorityGateway = mock(AuthorityGateway.class);
+        Bet bet1 = mock(Bet.class);
+        Bet bet2 = mock(Bet.class);
+        Bet bet3 = mock(Bet.class);
+        Logger logger = mock(Logger.class);
+        when(authorityGateway.randomInt("")).thenReturn(2);
+
+        //act
+        bettingRound.setAuthorityGateway(authorityGateway);
+        bettingRound.setBettingRoundLog(logger);
+        when(bet1.getInValue()).thenReturn(5.5);
+        when(bet2.getInValue()).thenReturn(2.0);
+        when(bet3.getInValue()).thenReturn(2.5);
+        bettingRound.placeBet(bet1);
+        bettingRound.placeBet(bet2);
+        bettingRound.placeBet(bet3);
+        bettingRound.resolveBets();
+
+
+        //assert
+        verify(logger).log("BettingRound ends");
     }
 
 
