@@ -13,14 +13,14 @@ import static org.mockito.Mockito.*;
 public class MachineTest {
 
     /**
-     * validating the machine constructor. No parameters, all attributes are hard-coded initialized in the constructor.
+     * Validating the machine constructor. No parameters, all attributes are hard-coded initialized in the constructor.
      */
     @Test
     public void createMachine_Always_ShouldPass() {
         // arrange
         Machine machine = new Machine();
         //assert
-        assertTrue("Machine is created successfully", machine != null);
+        assertTrue("Error while creating a machine. Machine is null.", machine != null);
     }
 
     /**
@@ -34,7 +34,7 @@ public class MachineTest {
         // act
         machine.connectCard(card);
         // assert
-        assertTrue("Card should be stored in the connected Cards list", machine.getConnectedCards().contains(card));
+        assertTrue("Card is not stored in the connected Cards list.", machine.getConnectedCards().contains(card));
     }
 
     /**
@@ -50,7 +50,7 @@ public class MachineTest {
         machine.connectCard(card1);
         machine.connectCard(card2);
         // assert
-        assertTrue("Both cards should be stored in the connected Cards list", machine.getConnectedCards().contains(card1) && machine.getConnectedCards().contains(card2));
+        assertTrue("Not all cards are stored in the connected Cards list.", machine.getConnectedCards().contains(card1) && machine.getConnectedCards().contains(card2));
     }
 
 
@@ -90,7 +90,7 @@ public class MachineTest {
         // act
         machine.disconnectCard(card);
         // assert
-        assertTrue("Card should be removed from the connected Cards list", !machine.getConnectedCards().contains(card));
+        assertTrue("Card is not removed from the connected Cards list.", !machine.getConnectedCards().contains(card));
     }
 
     /**
@@ -108,7 +108,7 @@ public class MachineTest {
         machine.disconnectCard(card2);
         machine.disconnectCard(card1);
         // assert
-        assertTrue("Both cards should be removed from the connected Cards list", !machine.getConnectedCards().contains(card1) && !machine.getConnectedCards().contains(card2));
+        assertTrue("Cards are not removed from the connected Cards list", !machine.getConnectedCards().contains(card1) && !machine.getConnectedCards().contains(card2));
 
     }
 
