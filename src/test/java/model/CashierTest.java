@@ -185,27 +185,68 @@ public class CashierTest {
 
 
     /**
-     * cashOutCard Always ShouldPass
+     * cashOutCard WithoutUpdatingCredit ShouldReturnInitialCredit
      */
     @Test
-    public void cashOutCard_ShouldPass() {
+    public void cashOutCard_WithoutUpdatingCredit_ShouldReturnInitialCredit() {
+        // arrange
+        Cashier cashier = Cashier.getInstance();
+        Double initialCredit = 10.0;
+        Card card = cashier.createCard(initialCredit);
 
+        // act
+        Double credit = cashier.cashOutCard(card);
+
+        // assert
+        assertEquals(initialCredit, credit, 0.0);
+    }
+
+    /**
+     * cashOutCard AfterCall CreditShouldBeZero
+     */
+    @Test
+    public void cashOutCard_AfterCall_CreditShouldBeZero() {
+        // arrange
+        Cashier cashier = Cashier.getInstance();
+        Double initialCredit = 10.0;
+        Card card = cashier.createCard(initialCredit);
+
+        // act
+        Double outCredit = cashier.cashOutCard(card);
+        Double credit = cashier.getCardCredit(card);
+
+        // assert
+        assertEquals(0.0, credit, 0.0);
     }
 
     /**
      * cashOutCard WithNullCard ShouldThrowIllegalArgumentsException
      */
-    @Test
+    @Test (expected = IllegalArgumentException.class)
     public void cashOutCard_WithNullCard_ShouldThrowIllegalArgumentsException() {
+        // arrange
+        Cashier cashier = Cashier.getInstance();
+
+        // act
+        Double outCredit = cashier.cashOutCard(null);
+
+        // assert
 
     }
 
     /**
      * cashOutCard WithACardNotCreatedByTheCashier ShouldThrowIllegalArgumentsException
      */
-    @Test
+    @Test (expected = IllegalArgumentException.class)
     public void cashOutCard_WithACardNotCreatedByTheCashier_ShouldThrowIllegalArgumentsException() {
+        // arrange
+        Cashier cashier = Cashier.getInstance();
+        Card card = new Card();
 
+        // act
+        Double outCredit = cashier.cashOutCard(card);
+
+        // assert
     }
 
 
