@@ -64,9 +64,11 @@ public class BettingRoundTest {
         when(authorityGateway.randomInt("")).thenReturn(1);
         Bet bet1 = mock(Bet.class);
         Bet bet2 = mock(Bet.class);
+        Logger logger = mock(Logger.class);
 
         //act
         bettingRound.setAuthorityGateway(authorityGateway);
+        bettingRound.setBettingRoundLog(logger);
         bettingRound.placeBet(bet1);
         bettingRound.placeBet(bet2);
         bettingRound.resolveBets();
@@ -86,10 +88,12 @@ public class BettingRoundTest {
         Bet bet1 = mock(Bet.class);
         Bet bet2 = mock(Bet.class);
         Bet bet3 = mock(Bet.class);
+        Logger logger = mock(Logger.class);
         when(authorityGateway.randomInt("")).thenReturn(2);
 
         //act
         bettingRound.setAuthorityGateway(authorityGateway);
+        bettingRound.setBettingRoundLog(logger);
         when(bet1.getInValue()).thenReturn(5.5);
         when(bet2.getInValue()).thenReturn(2.0);
         when(bet3.getInValue()).thenReturn(2.5);
@@ -121,6 +125,7 @@ public class BettingRoundTest {
 
         //act
         bettingRound.setAuthorityGateway(authorityGateway);
+        bettingRound.setBettingRoundLog(logger);
         bettingRound.setBettingRoundLog(logger);
         when(bet1.getInValue()).thenReturn(5.5);
         when(bet2.getInValue()).thenReturn(2.0);
