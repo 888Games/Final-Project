@@ -69,5 +69,13 @@ public class BettingRound {
         bets.get(randomNumber-1).resolve(finalOutValue);
 
     }
+
+
+    /**
+     * Logging Betting round
+     */
+    public void loggingBettingRound(){
+
+    }
 }
 

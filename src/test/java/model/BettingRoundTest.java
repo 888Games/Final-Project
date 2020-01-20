@@ -19,7 +19,7 @@ public class BettingRoundTest {
         BettingRound bettingRound = new BettingRound();
 
         //assert
-        assertTrue(bettingRound != null);
+        assertTrue("BettingRound not created successfully",bettingRound != null);
     }
 
     /**
@@ -103,6 +103,23 @@ public class BettingRoundTest {
 
     }
 
+
+    /**
+     * Validating that the Betting Round can log to the Authority
+     */
+    @Test
+    public void loggingToTheAuthority_ThroughTheBettingRound_ShouldPass(){
+        //arrange
+        BettingRound bettingRound = new BettingRound();
+        Logger logger = mock(Logger.class);
+
+
+        //act
+       bettingRound.loggingBettingRound();
+
+        //assert
+        verify(logger).log("");
+    }
 
 
 
