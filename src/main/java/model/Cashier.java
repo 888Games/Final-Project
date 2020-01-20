@@ -1,5 +1,6 @@
 package model;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -8,13 +9,12 @@ import java.util.Map;
 public class Cashier {
 
     private String cashierId;
-    private Map<Card,CardCredit> cardCredits;
+    private Map<Card,CardCredit> cardCredits = new HashMap<>();
     private Logger cashierLog;
     private AuthorityGateway authorityGateway;
     private static Cashier instance = null;
 
-    private Cashier() {
-    }
+    private Cashier() {}
 
     public static Cashier getInstance() {
         if(instance == null)
@@ -28,7 +28,12 @@ public class Cashier {
      * @return Card The created card.
      */
     public Card createCard(Double credit){
-        return new Card();
+        if(credit == null) throw new IllegalArgumentException();
+        if(credit < 0) throw new IllegalArgumentException();
+
+        Card card = new Card();
+        cardCredits.put(card, new CardCredit(credit));
+        return card;
     }
 
     /**
@@ -37,7 +42,9 @@ public class Cashier {
      * @return credit Double current card's credit
      */
     public Double getCardCredit(Card card){
-        return 0.0;
+        if(!cardCredits.containsKey(card)) throw new IllegalArgumentException();
+
+        return cardCredits.get(card).getCredit();
     }
 
     /**
@@ -47,7 +54,17 @@ public class Cashier {
      * @param credit Double Added credit from the current credit of the card. May be negative.
      */
     public void updateCardCredit(Card card, Double credit){
+        if (card == null) throw new IllegalArgumentException();
+        if (credit == null) throw new IllegalArgumentException();
+        if (!cardCredits.containsKey(card)) throw new IllegalArgumentException();
 
+        CardCredit cardCredit = cardCredits.get(card);
+        Double oldCredit = cardCredit.getCredit();
+        Double newCredit = oldCredit + credit;
+
+        if (newCredit < 0) throw new InsufficientCreditException();
+
+        cardCredit.setCredit(newCredit);
     }
 
     /**
@@ -57,6 +74,13 @@ public class Cashier {
      * @return credit Double Cash to withdraw.
      */
     public Double cashOutCard(Card card) {
-        return 0.0;
+        if (card == null) throw new IllegalArgumentException();
+        if (!cardCredits.containsKey(card)) throw new IllegalArgumentException();
+
+        CardCredit cardCredit = cardCredits.get(card);
+        Double credit = cardCredit.getCredit();
+        cardCredit.setCredit(0.0);
+
+        return credit;
     }
 }
